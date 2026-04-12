@@ -10,6 +10,7 @@ import NotFound from "./pages/NotFound.tsx";
 import CustomerMenu from "./pages/customer/CustomerMenu.tsx";
 import CustomerCart from "./pages/customer/CustomerCart.tsx";
 import CustomerReservation from "./pages/customer/CustomerReservation.tsx";
+import StaffHub from "./pages/staff/StaffHub.tsx";
 import WaiterFloor from "./pages/waiter/WaiterFloor.tsx";
 import WaiterOrders from "./pages/waiter/WaiterOrders.tsx";
 import KitchenDisplay from "./pages/kitchen/KitchenDisplay.tsx";
@@ -30,16 +31,19 @@ const App = () => (
           <BrowserRouter>
             <Routes>
               <Route path="/" element={<Index />} />
+              {/* Customer area */}
               <Route path="/customer" element={<CustomerMenu />} />
               <Route path="/customer/cart" element={<CustomerCart />} />
               <Route path="/customer/reservation" element={<CustomerReservation />} />
-              <Route path="/waiter" element={<WaiterFloor />} />
-              <Route path="/waiter/orders" element={<WaiterOrders />} />
-              <Route path="/kitchen" element={<KitchenDisplay />} />
-              <Route path="/admin" element={<AdminDashboard />} />
-              <Route path="/admin/menu" element={<AdminMenu />} />
-              <Route path="/admin/staff" element={<AdminStaff />} />
-              <Route path="/admin/settings" element={<AdminSettings />} />
+              {/* Staff area */}
+              <Route path="/staff" element={<StaffHub />} />
+              <Route path="/staff/floor" element={<WaiterFloor />} />
+              <Route path="/staff/orders" element={<WaiterOrders />} />
+              <Route path="/staff/kitchen" element={<KitchenDisplay />} />
+              <Route path="/staff/dashboard" element={<AdminDashboard />} />
+              <Route path="/staff/menu" element={<AdminMenu />} />
+              <Route path="/staff/team" element={<AdminStaff />} />
+              <Route path="/staff/settings" element={<AdminSettings />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </BrowserRouter>

@@ -1,8 +1,8 @@
-import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { ArrowLeft, ChefHat, Clock, CheckCircle2 } from 'lucide-react';
+import { useState } from 'react';
 import { orders as initialOrders, Order } from '@/data/mock';
 import { cn } from '@/lib/utils';
-import { ArrowLeft, Clock, ChefHat, CheckCircle2 } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const statusConfig: Record<string, { label: string; color: string; bg: string }> = {
@@ -35,7 +35,7 @@ const KitchenDisplay = () => {
     <div className="min-h-screen bg-background">
       <header className="sticky top-0 z-30 bg-card/80 backdrop-blur-lg border-b border-border px-4 py-3 flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <button onClick={() => navigate('/')} className="text-muted-foreground hover:text-foreground">
+          <button onClick={() => navigate('/staff')} className="text-muted-foreground hover:text-foreground">
             <ArrowLeft className="w-5 h-5" />
           </button>
           <h1 className="font-heading font-bold text-xl flex items-center gap-2">

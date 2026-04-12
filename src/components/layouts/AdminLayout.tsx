@@ -1,15 +1,15 @@
 import { ReactNode } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { LayoutDashboard, BookOpen, Users, Settings, ArrowLeft, ChefHat } from 'lucide-react';
+import { LayoutDashboard, BookOpen, Users, Settings, ArrowLeft } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useRole } from '@/contexts/RoleContext';
 import { roleLabels } from '@/data/mock';
 
 const navItems = [
-  { to: '/admin', icon: LayoutDashboard, label: 'Дашборд', end: true },
-  { to: '/admin/menu', icon: BookOpen, label: 'Меню', end: false },
-  { to: '/admin/staff', icon: Users, label: 'Персонал', end: false },
-  { to: '/admin/settings', icon: Settings, label: 'Налаштування', end: false },
+  { to: '/staff/dashboard', icon: LayoutDashboard, label: 'Дашборд', end: true },
+  { to: '/staff/menu', icon: BookOpen, label: 'Меню', end: false },
+  { to: '/staff/team', icon: Users, label: 'Персонал', end: false },
+  { to: '/staff/settings', icon: Settings, label: 'Налаштування', end: false },
 ];
 
 export const AdminLayout = ({ children }: { children: ReactNode }) => {
@@ -21,9 +21,9 @@ export const AdminLayout = ({ children }: { children: ReactNode }) => {
       {/* Sidebar */}
       <aside className="hidden md:flex w-64 border-r border-border bg-card flex-col">
         <div className="p-6 border-b border-border">
-          <button onClick={() => navigate('/')} className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors mb-4">
+          <button onClick={() => navigate('/staff')} className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors mb-4">
             <ArrowLeft className="w-4 h-4" />
-            <span className="text-sm">Назад</span>
+            <span className="text-sm">Зона персоналу</span>
           </button>
           <h1 className="font-heading font-bold text-xl">HoReCa <span className="text-primary">BOSS</span></h1>
           {role && <p className="text-xs text-muted-foreground mt-1">{roleLabels[role].ua}</p>}
@@ -49,7 +49,7 @@ export const AdminLayout = ({ children }: { children: ReactNode }) => {
       {/* Mobile header */}
       <div className="flex-1 flex flex-col">
         <header className="md:hidden sticky top-0 z-30 bg-card/80 backdrop-blur-lg border-b border-border px-4 py-3 flex items-center gap-3">
-          <button onClick={() => navigate('/')} className="text-muted-foreground hover:text-foreground">
+          <button onClick={() => navigate('/staff')} className="text-muted-foreground hover:text-foreground">
             <ArrowLeft className="w-5 h-5" />
           </button>
           <h1 className="font-heading font-bold text-lg">Адмін панель</h1>
