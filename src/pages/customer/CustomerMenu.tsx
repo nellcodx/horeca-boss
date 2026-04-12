@@ -5,6 +5,8 @@ import { useCart } from '@/contexts/CartContext';
 import { Plus, Minus } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
+import foodPlaceholder from '@/assets/food-placeholder.jpg';
+import drinksPlaceholder from '@/assets/drinks-placeholder.jpg';
 
 const CustomerMenu = () => {
   const [activeCategory, setActiveCategory] = useState('salads');
@@ -50,9 +52,14 @@ const CustomerMenu = () => {
                 transition={{ delay: i * 0.05 }}
                 className="flex items-center gap-4 p-4 rounded-xl bg-card border border-border"
               >
-                <div className="w-16 h-16 rounded-lg bg-accent flex items-center justify-center text-2xl">
-                  {menuCategories.find(c => c.id === item.category)?.icon}
-                </div>
+                <img
+                  src={item.category === 'drinks' ? drinksPlaceholder : foodPlaceholder}
+                  alt={item.name}
+                  loading="lazy"
+                  width={64}
+                  height={64}
+                  className="w-16 h-16 rounded-lg object-cover"
+                />
                 <div className="flex-1 min-w-0">
                   <h3 className="font-semibold text-sm text-card-foreground">{item.name}</h3>
                   <p className="text-xs text-muted-foreground line-clamp-1">{item.description}</p>
