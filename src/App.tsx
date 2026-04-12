@@ -8,6 +8,7 @@ import { CartProvider } from "@/contexts/CartContext";
 import Index from "./pages/Index.tsx";
 import NotFound from "./pages/NotFound.tsx";
 import CustomerMenu from "./pages/customer/CustomerMenu.tsx";
+import CustomerQR from "./pages/customer/CustomerQR.tsx";
 import CustomerCart from "./pages/customer/CustomerCart.tsx";
 import CustomerReservation from "./pages/customer/CustomerReservation.tsx";
 import StaffHub from "./pages/staff/StaffHub.tsx";
@@ -33,6 +34,7 @@ const App = () => (
               <Route path="/" element={<Index />} />
               {/* Customer area */}
               <Route path="/customer" element={<CustomerMenu />} />
+              <Route path="/customer/qr/:tableId" element={<CustomerQR />} />
               <Route path="/customer/cart" element={<CustomerCart />} />
               <Route path="/customer/reservation" element={<CustomerReservation />} />
               {/* Staff area */}
