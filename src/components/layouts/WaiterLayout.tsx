@@ -5,8 +5,8 @@ import { useRole } from '@/contexts/RoleContext';
 import { cn } from '@/lib/utils';
 
 const tabs = [
-  { to: '/waiter', icon: LayoutGrid, label: 'Зал' },
-  { to: '/waiter/orders', icon: ClipboardList, label: 'Замовлення' },
+  { to: '/staff/floor', icon: LayoutGrid, label: 'Зал' },
+  { to: '/staff/orders', icon: ClipboardList, label: 'Замовлення' },
 ];
 
 export const WaiterLayout = ({ children }: { children: ReactNode }) => {
@@ -17,7 +17,7 @@ export const WaiterLayout = ({ children }: { children: ReactNode }) => {
     <div className="min-h-screen bg-background flex flex-col">
       <header className="sticky top-0 z-30 bg-card/80 backdrop-blur-lg border-b border-border px-4 py-3 flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <button onClick={() => navigate('/')} className="text-muted-foreground hover:text-foreground transition-colors">
+          <button onClick={() => navigate('/staff')} className="text-muted-foreground hover:text-foreground transition-colors">
             <ArrowLeft className="w-5 h-5" />
           </button>
           <h1 className="font-heading font-bold text-lg">Офіціант</h1>
@@ -37,7 +37,7 @@ export const WaiterLayout = ({ children }: { children: ReactNode }) => {
             <NavLink
               key={to}
               to={to}
-              end={to === '/waiter'}
+              end={to === '/staff/floor'}
               className={({ isActive }) => cn(
                 'flex-1 flex items-center justify-center gap-3 py-4 text-lg font-semibold transition-colors',
                 isActive ? 'text-primary border-t-2 border-primary' : 'text-muted-foreground hover:text-foreground'

@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 import { NavLink as RouterNavLink, useNavigate } from 'react-router-dom';
-import { Home, Search, ShoppingCart, CalendarDays, ArrowLeft } from 'lucide-react';
+import { Home, ShoppingCart, CalendarDays, ArrowLeft } from 'lucide-react';
 import { useCart } from '@/contexts/CartContext';
 import { cn } from '@/lib/utils';
 
