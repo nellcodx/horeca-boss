@@ -21,7 +21,7 @@ export const CustomerLayout = ({ children }: { children: ReactNode }) => {
         <button onClick={() => navigate('/')} className="text-muted-foreground hover:text-foreground transition-colors">
           <ArrowLeft className="w-5 h-5" />
         </button>
-        <h1 className="font-heading font-bold text-lg">HoReCa <span className="text-primary">BOOS</span></h1>
+        <h1 className="font-heading font-bold text-lg">HoReCa <span className="text-primary">BOSS</span></h1>
       </header>
 
       <main className="flex-1 pb-20 overflow-y-auto">

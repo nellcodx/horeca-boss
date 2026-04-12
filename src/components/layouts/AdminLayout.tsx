@@ -25,7 +25,7 @@ export const AdminLayout = ({ children }: { children: ReactNode }) => {
             <ArrowLeft className="w-4 h-4" />
             <span className="text-sm">Назад</span>
           </button>
-          <h1 className="font-heading font-bold text-xl">HoReCa <span className="text-primary">BOOS</span></h1>
+          <h1 className="font-heading font-bold text-xl">HoReCa <span className="text-primary">BOSS</span></h1>
           {role && <p className="text-xs text-muted-foreground mt-1">{roleLabels[role].ua}</p>}
         </div>
         <nav className="flex-1 p-3 space-y-1">
