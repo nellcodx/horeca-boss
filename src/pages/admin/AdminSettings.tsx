@@ -1,5 +1,6 @@
 import { AdminLayout } from '@/components/layouts/AdminLayout';
-import { Globe, DollarSign, Building2, Palette } from 'lucide-react';
+import { Globe, DollarSign, Building2 } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 const AdminSettings = () => {
   return (
@@ -11,7 +12,6 @@ const AdminSettings = () => {
         </div>
 
         <div className="grid gap-4">
-          {/* Language */}
           <div className="p-5 rounded-xl bg-card border border-border">
             <div className="flex items-center gap-3 mb-4">
               <div className="w-10 h-10 rounded-lg bg-accent flex items-center justify-center text-accent-foreground"><Globe className="w-5 h-5" /></div>
@@ -32,7 +32,6 @@ const AdminSettings = () => {
             </div>
           </div>
 
-          {/* Currency */}
           <div className="p-5 rounded-xl bg-card border border-border">
             <div className="flex items-center gap-3 mb-4">
               <div className="w-10 h-10 rounded-lg bg-accent flex items-center justify-center text-accent-foreground"><DollarSign className="w-5 h-5" /></div>
@@ -46,7 +45,6 @@ const AdminSettings = () => {
             </div>
           </div>
 
-          {/* Business type */}
           <div className="p-5 rounded-xl bg-card border border-border">
             <div className="flex items-center gap-3 mb-4">
               <div className="w-10 h-10 rounded-lg bg-accent flex items-center justify-center text-accent-foreground"><Building2 className="w-5 h-5" /></div>
@@ -68,8 +66,5 @@ const AdminSettings = () => {
     </AdminLayout>
   );
 };
-
-// need cn import
-import { cn } from '@/lib/utils';
 
 export default AdminSettings;
