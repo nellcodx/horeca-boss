@@ -115,9 +115,9 @@ export const roleLabels: Record<UserRole, { ua: string; en: string }> = {
 };
 
 export const staffMembers = [
-  { id: 's1', name: 'Олена Коваленко', role: 'manager' as UserRole, email: 'olena@boos.ua', active: true },
-  { id: 's2', name: 'Андрій Шевченко', role: 'waiter' as UserRole, email: 'andriy@boos.ua', active: true },
-  { id: 's3', name: 'Марія Бондаренко', role: 'waiter' as UserRole, email: 'maria@boos.ua', active: true },
-  { id: 's4', name: 'Іван Петренко', role: 'kitchen' as UserRole, email: 'ivan@boos.ua', active: true },
-  { id: 's5', name: 'Наталія Ткаченко', role: 'cashier' as UserRole, email: 'natalia@boos.ua', active: false },
+  { id: 's1', name: 'Олена Коваленко', role: 'manager' as UserRole, email: 'olena@boss.ua', active: true },
+  { id: 's2', name: 'Андрій Шевченко', role: 'waiter' as UserRole, email: 'andriy@boss.ua', active: true },
+  { id: 's3', name: 'Марія Бондаренко', role: 'waiter' as UserRole, email: 'maria@boss.ua', active: true },
+  { id: 's4', name: 'Іван Петренко', role: 'kitchen' as UserRole, email: 'ivan@boss.ua', active: true },
+  { id: 's5', name: 'Наталія Ткаченко', role: 'cashier' as UserRole, email: 'natalia@boss.ua', active: false },
 ];

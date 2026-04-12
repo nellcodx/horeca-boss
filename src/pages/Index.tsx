@@ -32,7 +32,7 @@ const Index = () => {
         className="text-center mb-10"
       >
         <h1 className="text-5xl font-heading font-bold tracking-tight mb-2">
-          HoReCa <span className="text-primary">BOOS</span>
+          HoReCa <span className="text-primary">BOSS</span>
         </h1>
         <p className="text-muted-foreground text-lg">Система управління закладом</p>
       </motion.div>
