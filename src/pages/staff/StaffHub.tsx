@@ -47,7 +47,7 @@ const StaffHub = () => {
           <p className="text-muted-foreground">Оберіть вашу роль для входу</p>
         </div>
 
-        <div className="rounded-[28px] bg-secondary/45 p-3 sm:p-4">
+        <div className="rounded-[28px] bg-secondary/70 p-3 sm:p-4 shadow-card">
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
             {staffCards.map(({ role, icon, path, desc }, i) => (
               <motion.button
@@ -58,7 +58,7 @@ const StaffHub = () => {
                 onClick={() => handleSelect(role, path)}
                 className="group flex flex-col items-center gap-3 p-5 rounded-xl border-2 border-primary/30 bg-card ring-1 ring-primary/10 shadow-card-hover hover:-translate-y-0.5 hover:border-primary hover:shadow-card-hover transition-all duration-200 cursor-pointer"
               >
-                <div className="w-12 h-12 rounded-xl bg-primary/light flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
+                <div className="w-12 h-12 rounded-xl bg-primary-light flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
                   {icon}
                 </div>
                 <div className="text-center">
