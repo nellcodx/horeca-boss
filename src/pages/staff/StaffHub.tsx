@@ -55,7 +55,7 @@ const StaffHub = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 + i * 0.05 }}
               onClick={() => handleSelect(role, path)}
-              className="group flex flex-col items-center gap-3 p-5 rounded-xl border border-border bg-card hover:border-primary hover:shadow-lg hover:shadow-primary/10 transition-all duration-200 cursor-pointer"
+              className="group flex flex-col items-center gap-3 p-5 rounded-xl border-2 border-primary/30 bg-white hover:border-primary hover:shadow-lg hover:shadow-primary/10 transition-all duration-200 cursor-pointer shadow-card"
             >
               <div className="w-12 h-12 rounded-xl bg-accent flex items-center justify-center text-accent-foreground group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
                 {icon}
