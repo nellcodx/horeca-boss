@@ -20,6 +20,7 @@ import AdminTableMap from "./pages/admin/AdminTableMap.tsx";
 import AdminMenu from "./pages/admin/AdminMenu.tsx";
 import AdminStaff from "./pages/admin/AdminStaff.tsx";
 import AdminSettings from "./pages/admin/AdminSettings.tsx";
+import AuthPage from "./pages/auth/AuthPage.tsx";
 
 const queryClient = new QueryClient();
 
@@ -33,6 +34,7 @@ const App = () => (
           <BrowserRouter>
             <Routes>
               <Route path="/" element={<Index />} />
+              <Route path="/auth" element={<AuthPage />} />
               {/* Customer area */}
               <Route path="/customer" element={<CustomerMenu />} />
               <Route path="/customer/qr/:tableId" element={<CustomerQR />} />
