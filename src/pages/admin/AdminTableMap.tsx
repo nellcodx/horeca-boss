@@ -3,7 +3,7 @@ import { AdminLayout } from '@/components/layouts/AdminLayout';
 import { tables as initialTables, orders, TableInfo } from '@/data/mock';
 import { cn } from '@/lib/utils';
 import {
-  Users, Clock, CreditCard, Utensils, CalendarClock, GripVertical,
+  Users, Clock, CreditCard, Utensils, CalendarClock,
 } from 'lucide-react';
 import { TableVisual } from '@/components/TableVisual';
 import { Badge } from '@/components/ui/badge';
@@ -16,10 +16,10 @@ import {
 
 /* ── Status config ── */
 const statusCfg = {
-  free:     { label: 'Вільний',       color: 'bg-success/10 border-success/40', text: 'text-success',  dot: 'bg-success',  icon: Utensils },
-  occupied: { label: 'Зайнятий',      color: 'bg-destructive/10 border-destructive/40', text: 'text-destructive', dot: 'bg-destructive', icon: Users },
-  reserved: { label: 'Заброньований', color: 'bg-warning/10 border-warning/40', text: 'text-warning', dot: 'bg-warning', icon: CalendarClock },
-  payment:  { label: 'Оплата',        color: 'bg-info/10 border-info/40',       text: 'text-info',    dot: 'bg-info',    icon: CreditCard },
+  free:     { label: 'Вільний',       bg: 'bg-success/10', border: 'border-success/30', text: 'text-success',      dot: 'bg-success',      icon: Utensils },
+  occupied: { label: 'Зайнятий',      bg: 'bg-destructive/10', border: 'border-destructive/30', text: 'text-destructive', dot: 'bg-destructive', icon: Users },
+  reserved: { label: 'Заброньований', bg: 'bg-warning/10', border: 'border-warning/30', text: 'text-warning',     dot: 'bg-warning',      icon: CalendarClock },
+  payment:  { label: 'Оплата',        bg: 'bg-info/10',    border: 'border-info/30',    text: 'text-info',        dot: 'bg-info',         icon: CreditCard },
 } as const;
 
 const GRID = 20;
@@ -76,36 +76,42 @@ const AdminTableMap = () => {
 
   return (
     <AdminLayout>
-      <div className="space-y-4">
+      <div className="space-y-6">
         {/* Header */}
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>
-            <h1 className="font-heading text-2xl font-bold text-foreground">Карта залу</h1>
-            <p className="text-sm text-muted-foreground">Перетягуйте столи для розташування</p>
+            <h1 className="font-heading text-[32px] font-bold text-foreground leading-tight">Карта залу</h1>
+            <p className="text-sm text-muted-foreground mt-1">Перетягуйте столи · натисніть для деталей</p>
           </div>
 
-          {/* Summary pills */}
+          {/* Legend */}
           <div className="flex gap-2 flex-wrap">
             {(Object.keys(statusCfg) as Array<keyof typeof statusCfg>).map(s => (
-              <div key={s} className={cn('flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold border', statusCfg[s].color, statusCfg[s].text)}>
-                <div className={cn('w-2 h-2 rounded-full', statusCfg[s].dot)} />
+              <div
+                key={s}
+                className={cn(
+                  'flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-semibold border shadow-card',
+                  statusCfg[s].bg, statusCfg[s].border, statusCfg[s].text
+                )}
+              >
+                <div className={cn('w-2.5 h-2.5 rounded-full', statusCfg[s].dot)} />
                 {statusCfg[s].label}: {counts[s]}
               </div>
             ))}
           </div>
         </div>
 
-        {/* Zone filter */}
-        <div className="flex gap-2 bg-muted/50 p-1 rounded-xl w-fit">
+        {/* Zone filter — segmented control */}
+        <div className="flex gap-1 bg-card p-1.5 rounded-xl w-fit shadow-card border border-border">
           {zones.map(z => (
             <button
               key={z}
               onClick={() => setZone(z)}
               className={cn(
-                'px-4 py-2 rounded-lg text-sm font-medium transition-all',
+                'px-5 py-2.5 rounded-lg text-sm font-medium transition-all duration-200',
                 zone === z
-                  ? 'bg-card text-foreground shadow-sm'
-                  : 'text-muted-foreground hover:text-foreground'
+                  ? 'bg-primary text-primary-foreground shadow-card-hover'
+                  : 'text-muted-foreground hover:text-foreground hover:bg-muted/60'
               )}
             >
               {z === 'all' ? 'Всі' : z}
@@ -118,9 +124,9 @@ const AdminTableMap = () => {
           ref={floorRef}
           onPointerMove={handlePointerMove}
           onPointerUp={handlePointerUp}
-          className="relative bg-muted/30 border border-border rounded-2xl overflow-hidden select-none"
+          className="relative bg-card border border-border rounded-2xl overflow-hidden select-none shadow-card"
           style={{
-            minHeight: 500,
+            minHeight: 520,
             backgroundImage: 'radial-gradient(circle, hsl(var(--border)) 1px, transparent 1px)',
             backgroundSize: `${GRID}px ${GRID}px`,
           }}
@@ -137,8 +143,7 @@ const AdminTableMap = () => {
                     onClick={() => !isDragging && setSelectedTable(table)}
                     className={cn(
                       'absolute cursor-grab active:cursor-grabbing transition-all duration-200',
-                      isDragging ? 'z-30 scale-105 drop-shadow-xl' : 'z-10 hover:scale-[1.03] hover:drop-shadow-lg',
-                      table.status === 'payment' && 'animate-pulse'
+                      isDragging ? 'z-30 scale-110 shadow-card-hover' : 'z-10 hover:scale-105 shadow-card hover:shadow-card-hover',
                     )}
                     style={{
                       left: table.x,
@@ -153,18 +158,18 @@ const AdminTableMap = () => {
                       number={table.number}
                     />
                     {table.reservationTime && (
-                      <div className="absolute -top-1 -right-1 bg-warning text-warning-foreground rounded-full w-5 h-5 flex items-center justify-center z-20">
+                      <div className="absolute -top-1.5 -right-1.5 bg-warning text-warning-foreground rounded-full w-5 h-5 flex items-center justify-center z-20 shadow-card">
                         <Clock className="w-3 h-3" />
                       </div>
                     )}
                     {table.status === 'payment' && (
-                      <div className="absolute -top-1 -left-1 bg-info text-info-foreground rounded-full w-5 h-5 flex items-center justify-center z-20">
+                      <div className="absolute -top-1.5 -left-1.5 bg-info text-info-foreground rounded-full w-5 h-5 flex items-center justify-center z-20 shadow-card animate-pulse">
                         <CreditCard className="w-3 h-3" />
                       </div>
                     )}
                   </div>
                 </TooltipTrigger>
-                <TooltipContent side="top" className="text-xs">
+                <TooltipContent side="top" className="text-xs shadow-card-hover">
                   <p className="font-semibold">Стіл #{table.number} — {cfg.label}</p>
                   {table.waiter && <p>Офіціант: {table.waiter}</p>}
                   {table.reservationGuest && <p>Бронь: {table.reservationGuest} о {table.reservationTime}</p>}
@@ -180,69 +185,72 @@ const AdminTableMap = () => {
             const cfg = statusCfg[selectedTable.status];
             const order = getOrder(selectedTable.orderId);
             return (
-              <DialogContent className="max-w-md">
+              <DialogContent className="max-w-md shadow-modal rounded-2xl">
                 <DialogHeader>
-                  <div className="flex items-center gap-3">
-                    <div className={cn('w-12 h-12 rounded-xl flex items-center justify-center border-2 text-xl font-heading font-bold', cfg.color)}>
+                  <div className="flex items-center gap-4">
+                    <div className={cn(
+                      'w-14 h-14 rounded-xl flex items-center justify-center border-2 text-xl font-heading font-bold',
+                      cfg.bg, cfg.border, cfg.text
+                    )}>
                       {selectedTable.number}
                     </div>
                     <div>
-                      <DialogTitle className="text-lg">Стіл #{selectedTable.number}</DialogTitle>
-                      <DialogDescription className="flex items-center gap-2 mt-0.5">
-                        <Badge className={cn('text-xs', cfg.text, cfg.color, 'border')}>
+                      <DialogTitle className="text-xl font-heading">Стіл #{selectedTable.number}</DialogTitle>
+                      <DialogDescription className="flex items-center gap-2 mt-1">
+                        <Badge className={cn('text-xs font-semibold', cfg.text, cfg.bg, cfg.border, 'border')}>
                           {cfg.label}
                         </Badge>
-                        <span>{selectedTable.seats} місць · {selectedTable.zone}</span>
+                        <span className="text-muted-foreground">{selectedTable.seats} місць · {selectedTable.zone}</span>
                       </DialogDescription>
                     </div>
                   </div>
                 </DialogHeader>
 
-                <div className="space-y-4 mt-2">
+                <div className="space-y-4 mt-4">
                   {/* Waiter */}
                   {selectedTable.waiter && (
-                    <div className="flex items-center gap-2 text-sm">
+                    <div className="flex items-center gap-3 text-sm bg-accent rounded-xl px-4 py-3">
                       <Users className="w-4 h-4 text-muted-foreground" />
                       <span className="text-muted-foreground">Офіціант:</span>
-                      <span className="font-medium">{selectedTable.waiter}</span>
+                      <span className="font-semibold text-foreground">{selectedTable.waiter}</span>
                     </div>
                   )}
 
                   {/* Reservation */}
                   {selectedTable.reservationGuest && (
-                    <div className="bg-warning/10 border border-warning/30 rounded-lg p-3 space-y-1">
-                      <div className="flex items-center gap-2 text-sm font-medium text-warning">
+                    <div className="bg-warning/10 border border-warning/25 rounded-xl p-4 space-y-1">
+                      <div className="flex items-center gap-2 text-sm font-semibold text-warning">
                         <CalendarClock className="w-4 h-4" /> Бронювання
                       </div>
-                      <p className="text-sm">{selectedTable.reservationGuest} · {selectedTable.reservationTime}</p>
+                      <p className="text-sm text-foreground">{selectedTable.reservationGuest} · {selectedTable.reservationTime}</p>
                     </div>
                   )}
 
                   {/* Order items */}
                   {order && (
-                    <div className="space-y-2">
+                    <div className="space-y-3">
                       <h4 className="text-sm font-semibold text-foreground">Замовлення</h4>
-                      <div className="bg-muted/50 rounded-lg divide-y divide-border">
+                      <div className="bg-accent rounded-xl divide-y divide-border overflow-hidden">
                         {order.items.map((item, i) => (
-                          <div key={i} className="flex items-center justify-between px-3 py-2 text-sm">
-                            <span>{item.menuItem.name} <span className="text-muted-foreground">×{item.quantity}</span></span>
-                            <span className="font-medium">{item.menuItem.price * item.quantity} ₴</span>
+                          <div key={i} className="flex items-center justify-between px-4 py-3 text-sm">
+                            <span className="text-foreground">{item.menuItem.name} <span className="text-muted-foreground">×{item.quantity}</span></span>
+                            <span className="font-semibold text-foreground">{item.menuItem.price * item.quantity} ₴</span>
                           </div>
                         ))}
                       </div>
                       <div className="flex justify-between items-center pt-1 px-1">
                         <span className="text-sm font-medium text-muted-foreground">Разом</span>
-                        <span className="text-lg font-heading font-bold text-foreground">{order.total} ₴</span>
+                        <span className="text-2xl font-heading font-bold text-foreground">{order.total} ₴</span>
                       </div>
                     </div>
                   )}
 
                   {/* Quick actions */}
-                  <div className="flex gap-2 pt-2">
+                  <div className="flex gap-3 pt-2">
                     {selectedTable.status !== 'reserved' && (
                       <button
                         onClick={() => { cycleStatus(selectedTable); setSelectedTable(null); }}
-                        className="flex-1 bg-primary text-primary-foreground rounded-lg py-2.5 text-sm font-semibold hover:bg-primary/90 transition-colors"
+                        className="flex-1 bg-primary text-primary-foreground rounded-xl py-3 text-sm font-semibold hover:bg-primary-hover transition-colors duration-200 shadow-card hover:shadow-card-hover"
                       >
                         {selectedTable.status === 'free' ? 'Посадити гостей' :
                          selectedTable.status === 'occupied' ? 'Перейти до оплати' : 'Звільнити стіл'}
@@ -250,7 +258,7 @@ const AdminTableMap = () => {
                     )}
                     <button
                       onClick={() => setSelectedTable(null)}
-                      className="px-4 py-2.5 border border-border rounded-lg text-sm font-medium text-muted-foreground hover:bg-muted transition-colors"
+                      className="px-5 py-3 border border-border rounded-xl text-sm font-medium text-muted-foreground hover:bg-accent hover:text-foreground transition-colors duration-200"
                     >
                       Закрити
                     </button>
