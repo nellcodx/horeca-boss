@@ -30,9 +30,9 @@ const Index = () => {
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.1 }}
           onClick={() => navigate('/customer')}
-          className="group relative overflow-hidden p-8 rounded-2xl border-2 border-border bg-card hover:border-primary hover:shadow-xl hover:shadow-primary/10 transition-all duration-300 text-left"
+          className="group relative overflow-hidden p-8 rounded-2xl border border-white/40 bg-white/30 backdrop-blur-xl shadow-[0_4px_24px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:bg-white/50 hover:shadow-[0_8px_32px_rgba(229,57,53,0.12)] hover:border-primary/40 transition-all duration-300 text-left"
         >
-          <div className="w-14 h-14 rounded-2xl bg-accent flex items-center justify-center text-accent-foreground group-hover:bg-primary group-hover:text-primary-foreground transition-colors mb-5">
+          <div className="w-14 h-14 rounded-2xl bg-white/60 backdrop-blur-sm flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors duration-300 mb-5">
             <Utensils className="w-7 h-7" />
           </div>
           <h2 className="font-heading font-bold text-2xl text-card-foreground mb-2">Зона клієнта</h2>
@@ -48,9 +48,9 @@ const Index = () => {
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.2 }}
           onClick={() => navigate('/staff')}
-          className="group relative overflow-hidden p-8 rounded-2xl border-2 border-border bg-card hover:border-primary hover:shadow-xl hover:shadow-primary/10 transition-all duration-300 text-left"
+          className="group relative overflow-hidden p-8 rounded-2xl border border-white/40 bg-white/30 backdrop-blur-xl shadow-[0_4px_24px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:bg-white/50 hover:shadow-[0_8px_32px_rgba(229,57,53,0.12)] hover:border-primary/40 transition-all duration-300 text-left"
         >
-          <div className="w-14 h-14 rounded-2xl bg-accent flex items-center justify-center text-accent-foreground group-hover:bg-primary group-hover:text-primary-foreground transition-colors mb-5">
+          <div className="w-14 h-14 rounded-2xl bg-white/60 backdrop-blur-sm flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors duration-300 mb-5">
             <Users className="w-7 h-7" />
           </div>
           <h2 className="font-heading font-bold text-2xl text-card-foreground mb-2">Зона персоналу</h2>
