@@ -6,54 +6,62 @@
 
 @layer base {
   :root {
-    --background: 0 0% 99%;
-    --foreground: 0 0% 8%;
+    /* Surface */
+    --background: 0 0% 96%;
+    --foreground: 0 0% 10%;
 
     --card: 0 0% 100%;
-    --card-foreground: 0 0% 8%;
+    --card-foreground: 0 0% 10%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 8%;
+    --popover-foreground: 0 0% 10%;
 
-    --primary: 0 78% 52%;
+    /* Primary – Red accent (10%) */
+    --primary: 1 76% 55%;
     --primary-foreground: 0 0% 100%;
+    --primary-hover: 1 76% 48%;
+    --primary-light: 1 71% 87%;
 
+    /* Secondary – Neutrals (30%) */
     --secondary: 0 0% 96%;
-    --secondary-foreground: 0 0% 12%;
+    --secondary-foreground: 0 0% 10%;
 
-    --muted: 0 0% 95%;
-    --muted-foreground: 0 0% 40%;
+    --muted: 0 0% 96%;
+    --muted-foreground: 220 9% 46%;
 
-    --accent: 0 65% 96%;
-    --accent-foreground: 0 78% 42%;
+    --accent: 0 0% 98%;
+    --accent-foreground: 0 0% 10%;
 
-    --destructive: 0 84% 60%;
+    --destructive: 1 76% 55%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 0 0% 90%;
-    --input: 0 0% 90%;
-    --ring: 0 78% 52%;
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 1 76% 55%;
 
     --radius: 0.75rem;
 
+    /* Sidebar */
     --sidebar-background: 0 0% 100%;
     --sidebar-foreground: 0 0% 25%;
-    --sidebar-primary: 0 78% 52%;
+    --sidebar-primary: 1 76% 55%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 0 65% 96%;
-    --sidebar-accent-foreground: 0 78% 42%;
-    --sidebar-border: 0 0% 92%;
-    --sidebar-ring: 0 78% 52%;
+    --sidebar-accent: 0 0% 96%;
+    --sidebar-accent-foreground: 0 0% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 1 76% 55%;
 
-    --success: 145 63% 42%;
+    /* Status */
+    --success: 122 39% 49%;
     --success-foreground: 0 0% 100%;
     --warning: 38 92% 50%;
     --warning-foreground: 0 0% 100%;
-    --info: 210 70% 50%;
+    --info: 217 91% 60%;
     --info-foreground: 0 0% 100%;
 
-    --font-heading: 'Space Grotesk', sans-serif;
-    --font-body: 'Inter', sans-serif;
+    /* Typography */
+    --font-heading: 'Space Grotesk', system-ui, sans-serif;
+    --font-body: 'Inter', system-ui, sans-serif;
   }
 
   .dark {
@@ -66,8 +74,10 @@
     --popover: 0 0% 10%;
     --popover-foreground: 0 0% 95%;
 
-    --primary: 0 78% 55%;
+    --primary: 1 76% 58%;
     --primary-foreground: 0 0% 100%;
+    --primary-hover: 1 76% 50%;
+    --primary-light: 1 40% 20%;
 
     --secondary: 0 0% 15%;
     --secondary-foreground: 0 0% 90%;
@@ -75,24 +85,24 @@
     --muted: 0 0% 15%;
     --muted-foreground: 0 0% 55%;
 
-    --accent: 0 40% 15%;
-    --accent-foreground: 0 78% 65%;
+    --accent: 0 0% 13%;
+    --accent-foreground: 0 0% 90%;
 
     --destructive: 0 62% 30%;
     --destructive-foreground: 0 0% 95%;
 
     --border: 0 0% 18%;
     --input: 0 0% 18%;
-    --ring: 0 78% 55%;
+    --ring: 1 76% 58%;
 
     --sidebar-background: 0 0% 8%;
     --sidebar-foreground: 0 0% 80%;
-    --sidebar-primary: 0 78% 55%;
+    --sidebar-primary: 1 76% 58%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 0 40% 15%;
-    --sidebar-accent-foreground: 0 78% 65%;
+    --sidebar-accent: 0 0% 13%;
+    --sidebar-accent-foreground: 0 0% 90%;
     --sidebar-border: 0 0% 15%;
-    --sidebar-ring: 0 78% 55%;
+    --sidebar-ring: 1 76% 58%;
   }
 }
 
@@ -101,18 +111,30 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground antialiased;
     font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.5;
   }
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-heading);
+    line-height: 1.4;
   }
 }
 
 @layer utilities {
   .text-gradient-primary {
     @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(135deg, hsl(0, 78%, 52%), hsl(0, 78%, 38%));
+    background-image: linear-gradient(135deg, hsl(1, 76%, 55%), hsl(1, 76%, 40%));
+  }
+  .shadow-card {
+    box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+  }
+  .shadow-card-hover {
+    box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+  }
+  .shadow-modal {
+    box-shadow: 0 12px 32px rgba(0,0,0,0.15);
   }
 }
 
