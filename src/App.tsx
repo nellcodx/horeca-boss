@@ -16,6 +16,7 @@ import WaiterFloor from "./pages/waiter/WaiterFloor.tsx";
 import WaiterOrders from "./pages/waiter/WaiterOrders.tsx";
 import KitchenDisplay from "./pages/kitchen/KitchenDisplay.tsx";
 import AdminDashboard from "./pages/admin/AdminDashboard.tsx";
+import AdminTableMap from "./pages/admin/AdminTableMap.tsx";
 import AdminMenu from "./pages/admin/AdminMenu.tsx";
 import AdminStaff from "./pages/admin/AdminStaff.tsx";
 import AdminSettings from "./pages/admin/AdminSettings.tsx";
@@ -43,6 +44,7 @@ const App = () => (
               <Route path="/staff/orders" element={<WaiterOrders />} />
               <Route path="/staff/kitchen" element={<KitchenDisplay />} />
               <Route path="/staff/dashboard" element={<AdminDashboard />} />
+              <Route path="/staff/tablemap" element={<AdminTableMap />} />
               <Route path="/staff/menu" element={<AdminMenu />} />
               <Route path="/staff/team" element={<AdminStaff />} />
               <Route path="/staff/settings" element={<AdminSettings />} />
