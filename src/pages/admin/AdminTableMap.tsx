@@ -3,8 +3,9 @@ import { AdminLayout } from '@/components/layouts/AdminLayout';
 import { tables as initialTables, orders, TableInfo } from '@/data/mock';
 import { cn } from '@/lib/utils';
 import {
-  Users, Clock, CreditCard, Utensils, CalendarClock, X, GripVertical,
+  Users, Clock, CreditCard, Utensils, CalendarClock, GripVertical,
 } from 'lucide-react';
+import { TableVisual } from '@/components/TableVisual';
 import { Badge } from '@/components/ui/badge';
 import {
   Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription,
@@ -126,10 +127,7 @@ const AdminTableMap = () => {
         >
           {filtered.map(table => {
             const cfg = statusCfg[table.status];
-            const Icon = cfg.icon;
             const isDragging = dragId === table.id;
-            const isCircle = table.shape === 'circle';
-            const size = table.seats >= 6 ? 120 : table.seats >= 4 ? 100 : 80;
 
             return (
               <Tooltip key={table.id}>
@@ -138,36 +136,29 @@ const AdminTableMap = () => {
                     onPointerDown={(e) => handlePointerDown(e, table)}
                     onClick={() => !isDragging && setSelectedTable(table)}
                     className={cn(
-                      'absolute flex flex-col items-center justify-center gap-1 border-2 cursor-grab active:cursor-grabbing transition-shadow duration-200',
-                      cfg.color,
-                      isCircle ? 'rounded-full' : 'rounded-xl',
-                      isDragging ? 'z-30 shadow-xl scale-105 ring-2 ring-primary/30' : 'z-10 hover:shadow-lg hover:scale-[1.03]',
+                      'absolute cursor-grab active:cursor-grabbing transition-all duration-200',
+                      isDragging ? 'z-30 scale-105 drop-shadow-xl' : 'z-10 hover:scale-[1.03] hover:drop-shadow-lg',
                       table.status === 'payment' && 'animate-pulse'
                     )}
                     style={{
                       left: table.x,
                       top: table.y,
-                      width: size,
-                      height: size,
                       touchAction: 'none',
                     }}
                   >
-                    <GripVertical className="w-3 h-3 text-muted-foreground/40 absolute top-1 right-1" />
-                    <span className="font-heading font-bold text-lg text-foreground leading-none">
-                      {table.number}
-                    </span>
-                    <div className="flex items-center gap-1">
-                      <Icon className={cn('w-3.5 h-3.5', cfg.text)} />
-                      <span className={cn('text-[10px] font-semibold', cfg.text)}>{cfg.label}</span>
-                    </div>
-                    <span className="text-[10px] text-muted-foreground">{table.seats} місць</span>
+                    <TableVisual
+                      seats={table.seats}
+                      shape={table.shape}
+                      status={table.status}
+                      number={table.number}
+                    />
                     {table.reservationTime && (
-                      <div className="absolute -top-2 -right-2 bg-warning text-warning-foreground rounded-full w-5 h-5 flex items-center justify-center">
+                      <div className="absolute -top-1 -right-1 bg-warning text-warning-foreground rounded-full w-5 h-5 flex items-center justify-center z-20">
                         <Clock className="w-3 h-3" />
                       </div>
                     )}
                     {table.status === 'payment' && (
-                      <div className="absolute -top-2 -left-2 bg-info text-info-foreground rounded-full w-5 h-5 flex items-center justify-center">
+                      <div className="absolute -top-1 -left-1 bg-info text-info-foreground rounded-full w-5 h-5 flex items-center justify-center z-20">
                         <CreditCard className="w-3 h-3" />
                       </div>
                     )}
