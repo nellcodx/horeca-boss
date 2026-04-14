@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowLeft } from 'lucide-react';
+import { LogIn } from 'lucide-react';
 import AuthCard from '@/components/AuthCard';
 
 const AuthPage = () => {
@@ -18,19 +18,27 @@ const AuthPage = () => {
         animate={{ opacity: 1, y: 0 }}
         className="w-full max-w-[420px]"
       >
-        <button onClick={() => navigate('/')} className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors mb-8">
-          <ArrowLeft className="w-4 h-4" />
-          <span className="text-sm">На головну</span>
-        </button>
-
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-heading font-bold tracking-tight mb-2">
+          <h1 className="text-4xl font-heading font-bold tracking-tight mb-2">
             HoReCa <span className="text-primary">BOSS</span>
           </h1>
-          <p className="text-muted-foreground">Авторизація в системі</p>
+          <p className="text-muted-foreground">Система управління закладом</p>
         </div>
 
         <AuthCard />
+
+        <motion.button
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.5 }}
+          onClick={() => navigate('/home')}
+          className="mt-6 w-full flex items-center justify-center gap-2 py-3 rounded-xl border-2 border-dashed border-border text-muted-foreground hover:text-foreground hover:border-primary/40 transition-all text-sm font-medium"
+        >
+          <LogIn className="w-4 h-4" />
+          Увійти без авторизації (тест)
+        </motion.button>
+
+        <p className="text-center mt-6 text-xs text-muted-foreground">MVP Demo • HoReCa BOSS</p>
       </motion.div>
     </div>
   );

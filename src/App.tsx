@@ -33,8 +33,8 @@ const App = () => (
           <Sonner />
           <BrowserRouter>
             <Routes>
-              <Route path="/" element={<Index />} />
-              <Route path="/auth" element={<AuthPage />} />
+              <Route path="/" element={<AuthPage />} />
+              <Route path="/home" element={<Index />} />
               {/* Customer area */}
               <Route path="/customer" element={<CustomerMenu />} />
               <Route path="/customer/qr/:tableId" element={<CustomerQR />} />
