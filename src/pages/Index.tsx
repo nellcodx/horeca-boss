@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Users, Utensils, ArrowRight } from 'lucide-react';
+import { Users, Utensils } from 'lucide-react';
 
 const Index = () => {
   const navigate = useNavigate();
