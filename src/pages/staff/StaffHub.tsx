@@ -44,7 +44,7 @@ const StaffHub = () => {
           <h1 className="text-3xl font-heading font-bold tracking-tight mb-2">
             Зона <span className="text-primary">персоналу</span>
           </h1>
-          <p className="text-muted-foreground">Оберіть вашу роль для входу</p>
+          <p className="text-muted-foreground text-sm font-sans shadow-md">Оберіть вашу роль для входу</p>
         </div>
 
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
@@ -55,7 +55,7 @@ const StaffHub = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 + i * 0.05 }}
               onClick={() => handleSelect(role, path)}
-              className="group flex flex-col items-center gap-3 p-5 rounded-xl border border-white/40 bg-white/30 backdrop-blur-xl shadow-[0_4px_24px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:bg-white/50 hover:shadow-[0_8px_32px_rgba(229,57,53,0.12)] hover:border-primary/40 transition-all duration-300 cursor-pointer"
+              className="group flex flex-col items-center gap-3 p-5 rounded-xl border border-white/40 backdrop-blur-xl shadow-[0_4px_24px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:shadow-[0_8px_32px_rgba(229,57,53,0.12)] hover:border-primary/40 transition-all duration-300 cursor-pointer bg-primary-foreground"
             >
               <div className="w-12 h-12 rounded-xl bg-white/60 backdrop-blur-sm flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors duration-300">
                 {icon}
