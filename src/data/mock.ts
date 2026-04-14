@@ -15,9 +15,15 @@ export interface TableInfo {
   id: string;
   number: number;
   seats: number;
-  status: 'free' | 'occupied' | 'reserved';
+  status: 'free' | 'occupied' | 'reserved' | 'payment';
   zone: string;
   orderId?: string;
+  waiter?: string;
+  reservationTime?: string;
+  reservationGuest?: string;
+  x: number;
+  y: number;
+  shape: 'rect' | 'circle';
 }
 
 export interface OrderItem {
@@ -61,16 +67,16 @@ export const menuItems: MenuItem[] = [
 ];
 
 export const tables: TableInfo[] = [
-  { id: 't1', number: 1, seats: 2, status: 'free', zone: 'Зал' },
-  { id: 't2', number: 2, seats: 2, status: 'occupied', zone: 'Зал', orderId: 'o1' },
-  { id: 't3', number: 3, seats: 4, status: 'free', zone: 'Зал' },
-  { id: 't4', number: 4, seats: 4, status: 'reserved', zone: 'Зал' },
-  { id: 't5', number: 5, seats: 6, status: 'occupied', zone: 'Зал', orderId: 'o2' },
-  { id: 't6', number: 6, seats: 2, status: 'free', zone: 'Тераса' },
-  { id: 't7', number: 7, seats: 4, status: 'free', zone: 'Тераса' },
-  { id: 't8', number: 8, seats: 6, status: 'occupied', zone: 'Тераса', orderId: 'o3' },
-  { id: 't9', number: 9, seats: 8, status: 'free', zone: 'VIP' },
-  { id: 't10', number: 10, seats: 4, status: 'reserved', zone: 'VIP' },
+  { id: 't1', number: 1, seats: 2, status: 'free', zone: 'Зал', x: 60, y: 60, shape: 'rect' },
+  { id: 't2', number: 2, seats: 2, status: 'occupied', zone: 'Зал', orderId: 'o1', waiter: 'Андрій Ш.', x: 240, y: 60, shape: 'rect' },
+  { id: 't3', number: 3, seats: 4, status: 'free', zone: 'Зал', x: 420, y: 60, shape: 'rect' },
+  { id: 't4', number: 4, seats: 4, status: 'reserved', zone: 'Зал', reservationTime: '19:30', reservationGuest: 'Іванов О.', x: 60, y: 220, shape: 'rect' },
+  { id: 't5', number: 5, seats: 6, status: 'occupied', zone: 'Зал', orderId: 'o2', waiter: 'Марія Б.', x: 240, y: 220, shape: 'circle' },
+  { id: 't6', number: 6, seats: 2, status: 'free', zone: 'Тераса', x: 60, y: 60, shape: 'rect' },
+  { id: 't7', number: 7, seats: 4, status: 'payment', zone: 'Тераса', waiter: 'Андрій Ш.', orderId: 'o3', x: 240, y: 60, shape: 'rect' },
+  { id: 't8', number: 8, seats: 6, status: 'occupied', zone: 'Тераса', orderId: 'o3', waiter: 'Марія Б.', x: 420, y: 60, shape: 'circle' },
+  { id: 't9', number: 9, seats: 8, status: 'free', zone: 'VIP', x: 80, y: 80, shape: 'circle' },
+  { id: 't10', number: 10, seats: 4, status: 'reserved', zone: 'VIP', reservationTime: '20:00', reservationGuest: 'Петренко В.', x: 300, y: 80, shape: 'rect' },
 ];
 
 export const orders: Order[] = [
