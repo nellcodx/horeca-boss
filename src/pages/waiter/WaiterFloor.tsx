@@ -2,12 +2,13 @@ import { useState } from 'react';
 import { WaiterLayout } from '@/components/layouts/WaiterLayout';
 import { tables as initialTables, TableInfo } from '@/data/mock';
 import { cn } from '@/lib/utils';
-import { Users, Clock, Lock } from 'lucide-react';
+import { Users, Clock, CreditCard } from 'lucide-react';
 
-const statusConfig = {
+const statusConfig: Record<TableInfo['status'], { label: string; color: string; dot: string }> = {
   free: { label: 'Вільний', color: 'border-success/50 bg-success/5', dot: 'bg-success' },
   occupied: { label: 'Зайнятий', color: 'border-primary/50 bg-primary/5', dot: 'bg-primary' },
   reserved: { label: 'Заброньований', color: 'border-warning/50 bg-warning/5', dot: 'bg-warning' },
+  payment: { label: 'Оплата', color: 'border-info/50 bg-info/5', dot: 'bg-info' },
 };
 
 const WaiterFloor = () => {
@@ -20,7 +21,7 @@ const WaiterFloor = () => {
   const handleTableTap = (table: TableInfo) => {
     setTables(prev => prev.map(t => {
       if (t.id !== table.id) return t;
-      const next: TableInfo['status'] = t.status === 'free' ? 'occupied' : t.status === 'occupied' ? 'free' : t.status;
+      const next: TableInfo['status'] = t.status === 'free' ? 'occupied' : t.status === 'occupied' ? 'payment' : t.status === 'payment' ? 'free' : t.status;
       return { ...t, status: next };
     }));
   };
@@ -28,7 +29,6 @@ const WaiterFloor = () => {
   return (
     <WaiterLayout>
       <div className="space-y-4">
-        {/* Zone filter */}
         <div className="flex gap-2">
           {zones.map(z => (
             <button
@@ -44,7 +44,6 @@ const WaiterFloor = () => {
           ))}
         </div>
 
-        {/* Legend */}
         <div className="flex gap-4 text-sm">
           {Object.entries(statusConfig).map(([key, { label, dot }]) => (
             <div key={key} className="flex items-center gap-2">
@@ -54,7 +53,6 @@ const WaiterFloor = () => {
           ))}
         </div>
 
-        {/* Tables grid */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {filtered.map(table => {
             const cfg = statusConfig[table.status];
