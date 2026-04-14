@@ -44,7 +44,7 @@ const StaffHub = () => {
           <h1 className="text-3xl font-heading font-bold tracking-tight mb-2">
             Зона <span className="text-primary">персоналу</span>
           </h1>
-          <p className="text-muted-foreground text-sm font-sans shadow-md">Оберіть вашу роль для входу</p>
+          <p className="text-muted-foreground text-sm font-sans bg-muted border-0 border-muted border-none rounded-none shadow-none">Оберіть вашу роль для входу</p>
         </div>
 
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
