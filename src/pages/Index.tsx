@@ -31,7 +31,7 @@ const Index = () => {
             key={path}
             onClick={() => navigate(path)}
             className="group flex flex-col items-center gap-3 p-5 rounded-xl border border-white/40 backdrop-blur-xl shadow-[0_4px_24px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:shadow-[0_8px_32px_rgba(229,57,53,0.12)] hover:border-primary/40 transition-all duration-300 cursor-pointer bg-primary-foreground animate-fade-in"
-            style={{ animationDelay: `${100 + i * 80}ms`, animationFillMode: 'both' }}
+            
           >
             <div className="w-12 h-12 rounded-xl bg-white/60 backdrop-blur-sm flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors duration-300">
               {icon}
