@@ -24,42 +24,28 @@ const Index = () => {
         <p className="text-muted-foreground text-lg">Оберіть зону для роботи</p>
       </motion.div>
 
-      <div className="w-full max-w-2xl grid grid-cols-1 sm:grid-cols-2 gap-5">
-        <motion.button
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.1 }}
-          onClick={() => navigate('/customer')}
-          className="group relative overflow-hidden p-8 rounded-2xl border border-white/40 bg-white/30 backdrop-blur-xl shadow-[0_4px_24px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:bg-white/50 hover:shadow-[0_8px_32px_rgba(229,57,53,0.12)] hover:border-primary/40 transition-all duration-300 text-left"
-        >
-          <div className="w-14 h-14 rounded-2xl bg-white/60 backdrop-blur-sm flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors duration-300 mb-5">
-            <Utensils className="w-7 h-7" />
-          </div>
-          <h2 className="font-heading font-bold text-2xl text-card-foreground mb-2">Зона клієнта</h2>
-          <p className="text-sm text-muted-foreground mb-4">Меню, замовлення, бронювання столика</p>
-          <div className="flex items-center gap-2 text-primary font-semibold text-sm">
-            <span>Увійти</span>
-            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-          </div>
-        </motion.button>
-
-        <motion.button
-          initial={{ opacity: 0, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.2 }}
-          onClick={() => navigate('/staff')}
-          className="group relative overflow-hidden p-8 rounded-2xl border border-white/40 bg-white/30 backdrop-blur-xl shadow-[0_4px_24px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:bg-white/50 hover:shadow-[0_8px_32px_rgba(229,57,53,0.12)] hover:border-primary/40 transition-all duration-300 text-left"
-        >
-          <div className="w-14 h-14 rounded-2xl bg-white/60 backdrop-blur-sm flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors duration-300 mb-5">
-            <Users className="w-7 h-7" />
-          </div>
-          <h2 className="font-heading font-bold text-2xl text-card-foreground mb-2">Зона персоналу</h2>
-          <p className="text-sm text-muted-foreground mb-4">Управління залом, кухня, аналітика</p>
-          <div className="flex items-center gap-2 text-primary font-semibold text-sm">
-            <span>Увійти</span>
-            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-          </div>
-        </motion.button>
+      <div className="w-full max-w-md grid grid-cols-2 gap-3">
+        {[
+          { icon: <Utensils className="w-7 h-7" />, label: 'Зона клієнта', desc: 'Меню, замовлення, бронювання', path: '/customer', delay: 0.1 },
+          { icon: <Users className="w-7 h-7" />, label: 'Зона персоналу', desc: 'Управління залом, кухня, аналітика', path: '/staff', delay: 0.15 },
+        ].map(({ icon, label, desc, path, delay }) => (
+          <motion.button
+            key={path}
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay }}
+            onClick={() => navigate(path)}
+            className="group flex flex-col items-center gap-3 p-5 rounded-xl border border-white/40 backdrop-blur-xl shadow-[0_4px_24px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:shadow-[0_8px_32px_rgba(229,57,53,0.12)] hover:border-primary/40 transition-all duration-300 cursor-pointer bg-primary-foreground"
+          >
+            <div className="w-12 h-12 rounded-xl bg-white/60 backdrop-blur-sm flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors duration-300">
+              {icon}
+            </div>
+            <div className="text-center">
+              <div className="font-semibold text-sm text-foreground">{label}</div>
+              <div className="text-[11px] text-muted-foreground mt-0.5">{desc}</div>
+            </div>
+          </motion.button>
+        ))}
       </div>
 
       <p className="mt-12 text-xs text-muted-foreground">MVP Demo • HoReCa BOSS</p>
