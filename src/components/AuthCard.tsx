@@ -40,7 +40,7 @@ const AuthCard = () => {
         });
       } else {
         toast({ title: "Ви увійшли!", description: "Ласкаво просимо." });
-        navigate("/staff", { replace: true });
+        navigate("/home", { replace: true });
       }
     } catch (error: any) {
       toast({
