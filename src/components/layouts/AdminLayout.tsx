@@ -1,12 +1,13 @@
 import { ReactNode } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { LayoutDashboard, BookOpen, Users, Settings, ArrowLeft } from 'lucide-react';
+import { LayoutDashboard, BookOpen, Users, Settings, ArrowLeft, Map } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useRole } from '@/contexts/RoleContext';
 import { roleLabels } from '@/data/mock';
 
 const navItems = [
   { to: '/staff/dashboard', icon: LayoutDashboard, label: 'Дашборд', end: true },
+  { to: '/staff/tablemap', icon: Map, label: 'Карта залу', end: false },
   { to: '/staff/menu', icon: BookOpen, label: 'Меню', end: false },
   { to: '/staff/team', icon: Users, label: 'Персонал', end: false },
   { to: '/staff/settings', icon: Settings, label: 'Налаштування', end: false },
