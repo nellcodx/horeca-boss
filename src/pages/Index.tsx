@@ -14,14 +14,30 @@ const Index = () => {
         <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(circle, hsl(1 76% 55%) 0.5px, transparent 0.5px)', backgroundSize: '24px 24px' }} />
       </div>
       <motion.div
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0, scale: 0.95, y: -20 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
         className="text-center mb-12"
       >
-        <h1 className="text-5xl font-heading font-bold tracking-tight mb-2">
-          HoReCa <span className="text-primary">BOSS</span>
-        </h1>
-        <p className="text-muted-foreground text-lg">Оберіть зону для роботи</p>
+        <motion.h1
+          initial={{ opacity: 0, letterSpacing: '0.15em' }}
+          animate={{ opacity: 1, letterSpacing: '-0.025em' }}
+          transition={{ duration: 0.7, delay: 0.2, ease: 'easeOut' }}
+          className="text-5xl font-heading font-bold mb-2"
+        >
+          HoReCa <motion.span
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.4, delay: 0.5, type: 'spring', stiffness: 200 }}
+            className="text-primary inline-block"
+          >BOSS</motion.span>
+        </motion.h1>
+        <motion.p
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, delay: 0.6 }}
+          className="text-muted-foreground text-lg"
+        >Оберіть зону для роботи</motion.p>
       </motion.div>
 
       <div className="w-full max-w-md grid grid-cols-2 gap-3">
