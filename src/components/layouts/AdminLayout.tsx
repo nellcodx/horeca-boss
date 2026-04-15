@@ -6,11 +6,11 @@ import { useRole } from '@/contexts/RoleContext';
 import { roleLabels } from '@/data/mock';
 
 const navItems = [
-  { to: '/staff/dashboard', icon: LayoutDashboard, label: 'Дашборд', end: true },
-  { to: '/staff/tablemap', icon: Map, label: 'Карта залу', end: false },
-  { to: '/staff/menu', icon: BookOpen, label: 'Меню', end: false },
-  { to: '/staff/team', icon: Users, label: 'Персонал', end: false },
-  { to: '/staff/settings', icon: Settings, label: 'Налаштування', end: false },
+  { to: '/staff/dashboard', icon: LayoutDashboard, label: 'Dashboard', end: true },
+  { to: '/staff/tablemap', icon: Map, label: 'Floor Map', end: false },
+  { to: '/staff/menu', icon: BookOpen, label: 'Menu', end: false },
+  { to: '/staff/team', icon: Users, label: 'Staff', end: false },
+  { to: '/staff/settings', icon: Settings, label: 'Settings', end: false },
 ];
 
 export const AdminLayout = ({ children }: { children: ReactNode }) => {
@@ -19,15 +19,14 @@ export const AdminLayout = ({ children }: { children: ReactNode }) => {
 
   return (
     <div className="min-h-screen bg-background flex">
-      {/* Sidebar */}
       <aside className="hidden md:flex w-64 border-r border-border bg-card flex-col">
         <div className="p-6 border-b border-border">
           <button onClick={() => navigate('/staff')} className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors mb-4">
             <ArrowLeft className="w-4 h-4" />
-            <span className="text-sm">Зона персоналу</span>
+            <span className="text-sm">Staff Zone</span>
           </button>
           <h1 className="font-heading font-bold text-xl">HoReCa <span className="text-primary">BOSS</span></h1>
-          {role && <p className="text-xs text-muted-foreground mt-1">{roleLabels[role].ua}</p>}
+          {role && <p className="text-xs text-muted-foreground mt-1">{roleLabels[role].en}</p>}
         </div>
         <nav className="flex-1 p-3 space-y-1">
           {navItems.map(({ to, icon: Icon, label, end }) => (
@@ -47,18 +46,16 @@ export const AdminLayout = ({ children }: { children: ReactNode }) => {
         </nav>
       </aside>
 
-      {/* Mobile header */}
       <div className="flex-1 flex flex-col">
         <header className="md:hidden sticky top-0 z-30 bg-card/80 backdrop-blur-lg border-b border-border px-4 py-3 flex items-center gap-3">
           <button onClick={() => navigate('/staff')} className="text-muted-foreground hover:text-foreground">
             <ArrowLeft className="w-5 h-5" />
           </button>
-          <h1 className="font-heading font-bold text-lg">Адмін панель</h1>
+          <h1 className="font-heading font-bold text-lg">Admin Panel</h1>
         </header>
 
         <main className="flex-1 p-6">{children}</main>
 
-        {/* Mobile bottom nav */}
         <nav className="md:hidden sticky bottom-0 bg-card/90 backdrop-blur-lg border-t border-border">
           <div className="flex justify-around py-2">
             {navItems.map(({ to, icon: Icon, label, end }) => (

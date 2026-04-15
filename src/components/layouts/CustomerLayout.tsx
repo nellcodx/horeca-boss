@@ -5,9 +5,9 @@ import { useCart } from '@/contexts/CartContext';
 import { cn } from '@/lib/utils';
 
 const tabs = [
-  { to: '/customer', icon: Home, label: 'Меню' },
-  { to: '/customer/cart', icon: ShoppingCart, label: 'Кошик' },
-  { to: '/customer/reservation', icon: CalendarDays, label: 'Бронь' },
+  { to: '/customer', icon: Home, label: 'Menu' },
+  { to: '/customer/cart', icon: ShoppingCart, label: 'Cart' },
+  { to: '/customer/reservation', icon: CalendarDays, label: 'Reserve' },
 ];
 
 export const CustomerLayout = ({ children }: { children: ReactNode }) => {
@@ -42,7 +42,7 @@ export const CustomerLayout = ({ children }: { children: ReactNode }) => {
             >
               <div className="relative">
                 <Icon className="w-5 h-5" />
-                {label === 'Кошик' && cartCount > 0 && (
+                {label === 'Cart' && cartCount > 0 && (
                   <span className="absolute -top-2 -right-2 w-4 h-4 rounded-full bg-primary text-primary-foreground text-[10px] flex items-center justify-center font-bold">
                     {cartCount}
                   </span>

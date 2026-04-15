@@ -10,9 +10,9 @@ interface KitchenOrder extends Order {
 }
 
 const columns: { status: string; label: string; icon: React.ReactNode; headerBg: string; borderColor: string }[] = [
-  { status: 'new', label: 'Нове', icon: <Clock className="w-5 h-5" />, headerBg: 'bg-warning', borderColor: 'border-warning' },
-  { status: 'in_progress', label: 'В роботі', icon: <ChefHat className="w-5 h-5" />, headerBg: 'bg-primary', borderColor: 'border-primary' },
-  { status: 'ready', label: 'Готово', icon: <CheckCircle2 className="w-5 h-5" />, headerBg: 'bg-success', borderColor: 'border-success' },
+  { status: 'new', label: 'New', icon: <Clock className="w-5 h-5" />, headerBg: 'bg-warning', borderColor: 'border-warning' },
+  { status: 'in_progress', label: 'In Progress', icon: <ChefHat className="w-5 h-5" />, headerBg: 'bg-primary', borderColor: 'border-primary' },
+  { status: 'ready', label: 'Ready', icon: <CheckCircle2 className="w-5 h-5" />, headerBg: 'bg-success', borderColor: 'border-success' },
 ];
 
 const KitchenDisplay = () => {
@@ -49,7 +49,7 @@ const KitchenDisplay = () => {
 
   const timeAgo = (dateStr: string) => {
     const mins = Math.floor((Date.now() - new Date(dateStr).getTime()) / 60000);
-    return `${mins} хв`;
+    return `${mins} min`;
   };
 
   const getColumnOrders = (status: string) =>
@@ -66,7 +66,7 @@ const KitchenDisplay = () => {
           </button>
           <h1 className="font-heading font-bold text-xl flex items-center gap-2">
             <ChefHat className="w-6 h-6 text-primary" />
-            Кухня
+            Kitchen
           </h1>
         </div>
         <div className="flex gap-2 text-sm">
@@ -78,13 +78,11 @@ const KitchenDisplay = () => {
         </div>
       </header>
 
-      {/* Kanban board */}
       <div className="flex-1 p-4 grid grid-cols-1 md:grid-cols-3 gap-4 items-start">
         {columns.map(col => {
           const colOrders = getColumnOrders(col.status);
           return (
             <div key={col.status} className={cn('rounded-2xl border-2 bg-muted/30 flex flex-col min-h-[300px]', col.borderColor)}>
-              {/* Column header */}
               <div className={cn('px-4 py-3 rounded-t-xl flex items-center justify-between', col.headerBg)}>
                 <div className="flex items-center gap-2 text-primary-foreground font-bold">
                   {col.icon}
@@ -95,11 +93,10 @@ const KitchenDisplay = () => {
                 </span>
               </div>
 
-              {/* Cards */}
               <div className="p-3 space-y-3 flex-1">
                 {colOrders.length === 0 && (
                   <div className="flex items-center justify-center h-24 text-muted-foreground text-sm">
-                    Немає замовлень
+                    No orders
                   </div>
                 )}
                 {colOrders.map((order, i) => (
@@ -114,11 +111,10 @@ const KitchenDisplay = () => {
                       order.priority === 'urgent' && 'ring-2 ring-destructive'
                     )}
                   >
-                    {/* Card header */}
                     <div className="px-3 py-2 flex items-center justify-between border-b border-border">
                       <div className="flex items-center gap-2">
                         <GripVertical className="w-4 h-4 text-muted-foreground/40" />
-                        <span className="font-heading font-bold text-foreground">Стіл #{order.tableNumber}</span>
+                        <span className="font-heading font-bold text-foreground">Table #{order.tableNumber}</span>
                         {order.priority === 'urgent' && (
                           <AlertTriangle className="w-4 h-4 text-destructive animate-pulse" />
                         )}
@@ -129,7 +125,6 @@ const KitchenDisplay = () => {
                       </div>
                     </div>
 
-                    {/* Items */}
                     <div className="px-3 py-2 space-y-1.5">
                       {order.items.map((item, j) => (
                         <div key={j} className="flex items-center gap-2 text-sm">
@@ -141,7 +136,6 @@ const KitchenDisplay = () => {
                       ))}
                     </div>
 
-                    {/* Actions */}
                     <div className="px-3 py-2 border-t border-border flex gap-2">
                       <button
                         onClick={() => togglePriority(order.id)}
@@ -149,7 +143,7 @@ const KitchenDisplay = () => {
                           'p-2 rounded-lg border transition-colors',
                           order.priority === 'urgent' ? 'border-destructive bg-destructive/10 text-destructive' : 'border-border text-muted-foreground hover:bg-muted'
                         )}
-                        title={order.priority === 'urgent' ? 'Зняти пріоритет' : 'Терміново'}
+                        title={order.priority === 'urgent' ? 'Remove priority' : 'Urgent'}
                       >
                         <AlertTriangle className="w-4 h-4" />
                       </button>
@@ -159,7 +153,7 @@ const KitchenDisplay = () => {
                           onClick={() => revertStatus(order.id)}
                           className="px-3 py-2 rounded-lg border border-border text-muted-foreground text-xs font-medium hover:bg-muted transition-colors"
                         >
-                          ← Назад
+                          ← Back
                         </button>
                       )}
 
@@ -171,13 +165,13 @@ const KitchenDisplay = () => {
                             col.status === 'new' ? 'bg-primary text-primary-foreground' : 'bg-success text-success-foreground'
                           )}
                         >
-                          {col.status === 'new' ? 'Готувати →' : 'Готово ✓'}
+                          {col.status === 'new' ? 'Start →' : 'Done ✓'}
                         </button>
                       )}
 
                       {col.status === 'ready' && (
                         <div className="flex-1 py-2 rounded-lg bg-success/10 text-center">
-                          <span className="text-success font-bold text-sm">Чекає видачі</span>
+                          <span className="text-success font-bold text-sm">Awaiting Pickup</span>
                         </div>
                       )}
                     </div>

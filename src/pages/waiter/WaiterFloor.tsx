@@ -5,10 +5,10 @@ import { cn } from '@/lib/utils';
 import { TableVisual } from '@/components/TableVisual';
 
 const statusConfig: Record<TableInfo['status'], { label: string; dot: string }> = {
-  free: { label: 'Вільний', dot: 'bg-success' },
-  occupied: { label: 'Зайнятий', dot: 'bg-destructive' },
-  reserved: { label: 'Заброньований', dot: 'bg-warning' },
-  payment: { label: 'Оплата', dot: 'bg-info' },
+  free: { label: 'Free', dot: 'bg-success' },
+  occupied: { label: 'Occupied', dot: 'bg-destructive' },
+  reserved: { label: 'Reserved', dot: 'bg-warning' },
+  payment: { label: 'Payment', dot: 'bg-info' },
 };
 
 const WaiterFloor = () => {
@@ -38,7 +38,7 @@ const WaiterFloor = () => {
                 selectedZone === z ? 'bg-primary text-primary-foreground border-primary' : 'bg-card border-border text-muted-foreground'
               )}
             >
-              {z === 'all' ? 'Всі' : z}
+              {z === 'all' ? 'All' : z}
             </button>
           ))}
         </div>
@@ -69,7 +69,7 @@ const WaiterFloor = () => {
                 status={table.status}
                 number={table.number}
               />
-              <span className="text-xs font-medium text-muted-foreground">{statusConfig[table.status].label} · {table.seats} місць</span>
+              <span className="text-xs font-medium text-muted-foreground">{statusConfig[table.status].label} · {table.seats} seats</span>
             </button>
           ))}
         </div>

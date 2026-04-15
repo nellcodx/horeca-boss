@@ -20,29 +20,28 @@ const AdminMenu = () => {
       <div className="space-y-6">
         <div className="flex items-center justify-between">
           <div>
-            <h2 className="font-heading font-bold text-2xl">Управління меню</h2>
-            <p className="text-muted-foreground text-sm">{items.length} позицій</p>
+            <h2 className="font-heading font-bold text-2xl">Menu Management</h2>
+            <p className="text-muted-foreground text-sm">{items.length} items</p>
           </div>
           <button className="px-5 py-2.5 rounded-xl bg-primary text-primary-foreground font-semibold text-sm flex items-center gap-2 hover:opacity-90 transition-opacity">
             <Plus className="w-4 h-4" />
-            Додати страву
+            Add Dish
           </button>
         </div>
 
-        {/* Search + filter */}
         <div className="flex flex-col sm:flex-row gap-3">
           <div className="relative flex-1">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
             <input
               value={search}
               onChange={e => setSearch(e.target.value)}
-              placeholder="Пошук страв..."
+              placeholder="Search dishes..."
               className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-input bg-background text-foreground text-sm focus:ring-2 focus:ring-ring outline-none"
             />
           </div>
           <div className="flex gap-2 overflow-x-auto">
             <button onClick={() => setActiveCategory('all')} className={cn('px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap border transition-colors', activeCategory === 'all' ? 'bg-primary text-primary-foreground border-primary' : 'border-border text-muted-foreground')}>
-              Всі
+              All
             </button>
             {menuCategories.map(cat => (
               <button key={cat.id} onClick={() => setActiveCategory(cat.id)} className={cn('px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap border transition-colors', activeCategory === cat.id ? 'bg-primary text-primary-foreground border-primary' : 'border-border text-muted-foreground')}>
@@ -52,16 +51,15 @@ const AdminMenu = () => {
           </div>
         </div>
 
-        {/* Table */}
         <div className="rounded-xl bg-card border border-border overflow-hidden">
           <table className="w-full">
             <thead>
               <tr className="border-b border-border">
-                <th className="text-left p-4 text-sm font-medium text-muted-foreground">Назва</th>
-                <th className="text-left p-4 text-sm font-medium text-muted-foreground hidden sm:table-cell">Категорія</th>
-                <th className="text-left p-4 text-sm font-medium text-muted-foreground">Ціна</th>
-                <th className="text-left p-4 text-sm font-medium text-muted-foreground">Статус</th>
-                <th className="text-right p-4 text-sm font-medium text-muted-foreground">Дії</th>
+                <th className="text-left p-4 text-sm font-medium text-muted-foreground">Name</th>
+                <th className="text-left p-4 text-sm font-medium text-muted-foreground hidden sm:table-cell">Category</th>
+                <th className="text-left p-4 text-sm font-medium text-muted-foreground">Price</th>
+                <th className="text-left p-4 text-sm font-medium text-muted-foreground">Status</th>
+                <th className="text-right p-4 text-sm font-medium text-muted-foreground">Actions</th>
               </tr>
             </thead>
             <tbody>
@@ -74,10 +72,10 @@ const AdminMenu = () => {
                   <td className="p-4 text-sm text-muted-foreground hidden sm:table-cell">
                     {menuCategories.find(c => c.id === item.category)?.name}
                   </td>
-                  <td className="p-4 text-sm font-semibold text-card-foreground">{item.price} ₴</td>
+                  <td className="p-4 text-sm font-semibold text-card-foreground">€{item.price.toFixed(2)}</td>
                   <td className="p-4">
                     <span className={cn('px-2.5 py-1 rounded-full text-xs font-medium', item.available ? 'bg-success/10 text-success' : 'bg-destructive/10 text-destructive')}>
-                      {item.available ? 'Активна' : 'Неактивна'}
+                      {item.available ? 'Active' : 'Inactive'}
                     </span>
                   </td>
                   <td className="p-4 text-right">

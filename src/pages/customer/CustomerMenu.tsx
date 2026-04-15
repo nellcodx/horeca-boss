@@ -19,9 +19,8 @@ const CustomerMenu = () => {
   return (
     <CustomerLayout>
       <div className="px-4 pt-4">
-        <h2 className="font-heading font-bold text-xl mb-4">Меню</h2>
+        <h2 className="font-heading font-bold text-xl mb-4">Menu</h2>
 
-        {/* Categories */}
         <div className="flex gap-2 overflow-x-auto pb-3 no-scrollbar">
           {menuCategories.map(cat => (
             <button
@@ -40,7 +39,6 @@ const CustomerMenu = () => {
           ))}
         </div>
 
-        {/* Items */}
         <div className="space-y-3 mt-4">
           {filtered.map((item, i) => {
             const qty = getQty(item.id);
@@ -63,7 +61,7 @@ const CustomerMenu = () => {
                 <div className="flex-1 min-w-0">
                   <h3 className="font-semibold text-sm text-card-foreground">{item.name}</h3>
                   <p className="text-xs text-muted-foreground line-clamp-1">{item.description}</p>
-                  <p className="font-bold text-primary text-sm mt-1">{item.price} ₴</p>
+                  <p className="font-bold text-primary text-sm mt-1">€{item.price.toFixed(2)}</p>
                 </div>
                 <div className="flex items-center gap-2">
                   {qty > 0 ? (

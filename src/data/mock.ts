@@ -42,67 +42,67 @@ export interface Order {
 }
 
 export const menuCategories = [
-  { id: 'salads', name: 'Салати', nameEn: 'Salads', icon: '🥗' },
-  { id: 'soups', name: 'Супи', nameEn: 'Soups', icon: '🍲' },
-  { id: 'main', name: 'Основні страви', nameEn: 'Main Courses', icon: '🥩' },
-  { id: 'pizza', name: 'Піца', nameEn: 'Pizza', icon: '🍕' },
-  { id: 'drinks', name: 'Напої', nameEn: 'Drinks', icon: '🥤' },
-  { id: 'desserts', name: 'Десерти', nameEn: 'Desserts', icon: '🍰' },
+  { id: 'salads', name: 'Salads', nameEn: 'Salads', icon: '🥗' },
+  { id: 'soups', name: 'Soups', nameEn: 'Soups', icon: '🍲' },
+  { id: 'main', name: 'Main Courses', nameEn: 'Main Courses', icon: '🥩' },
+  { id: 'pizza', name: 'Pizza', nameEn: 'Pizza', icon: '🍕' },
+  { id: 'drinks', name: 'Drinks', nameEn: 'Drinks', icon: '🥤' },
+  { id: 'desserts', name: 'Desserts', nameEn: 'Desserts', icon: '🍰' },
 ];
 
 export const menuItems: MenuItem[] = [
-  { id: '1', name: 'Цезар з куркою', nameEn: 'Chicken Caesar', description: 'Салат Романо, куряче філе, пармезан, соус Цезар', price: 245, category: 'salads', available: true },
-  { id: '2', name: 'Грецький салат', nameEn: 'Greek Salad', description: 'Помідори, огірки, оливки, фета, оливкова олія', price: 195, category: 'salads', available: true },
-  { id: '3', name: 'Борщ український', nameEn: 'Ukrainian Borscht', description: 'Традиційний борщ з пампушками та часником', price: 165, category: 'soups', available: true },
-  { id: '4', name: 'Крем-суп грибний', nameEn: 'Mushroom Cream Soup', description: 'Ніжний крем-суп з білих грибів', price: 155, category: 'soups', available: true },
-  { id: '5', name: 'Стейк Рібай', nameEn: 'Ribeye Steak', description: 'Стейк з мармурової яловичини, 300г', price: 685, category: 'main', available: true },
-  { id: '6', name: 'Лосось на грилі', nameEn: 'Grilled Salmon', description: 'Філе лосося з овочами гриль', price: 445, category: 'main', available: true },
-  { id: '7', name: 'Курка по-київськи', nameEn: 'Chicken Kyiv', description: 'Класична котлета по-київськи з маслом', price: 295, category: 'main', available: true },
-  { id: '8', name: 'Маргарита', nameEn: 'Margherita', description: 'Томатний соус, моцарела, базилік', price: 225, category: 'pizza', available: true },
-  { id: '9', name: 'Пепероні', nameEn: 'Pepperoni', description: 'Томатний соус, моцарела, пепероні', price: 265, category: 'pizza', available: true },
-  { id: '10', name: 'Лимонад домашній', nameEn: 'Homemade Lemonade', description: 'Лимон, м\'ята, цукор, газована вода', price: 95, category: 'drinks', available: true },
-  { id: '11', name: 'Капучино', nameEn: 'Cappuccino', description: 'Еспресо з молочною пінкою', price: 85, category: 'drinks', available: true },
-  { id: '12', name: 'Чізкейк Нью-Йорк', nameEn: 'NY Cheesecake', description: 'Класичний чізкейк з ягідним соусом', price: 175, category: 'desserts', available: true },
-  { id: '13', name: 'Тірамісу', nameEn: 'Tiramisu', description: 'Італійський десерт з маскарпоне та кавою', price: 185, category: 'desserts', available: true },
+  { id: '1', name: 'Chicken Caesar', nameEn: 'Chicken Caesar', description: 'Romaine lettuce, chicken breast, parmesan, Caesar dressing', price: 5.95, category: 'salads', available: true },
+  { id: '2', name: 'Greek Salad', nameEn: 'Greek Salad', description: 'Tomatoes, cucumbers, olives, feta, olive oil', price: 4.75, category: 'salads', available: true },
+  { id: '3', name: 'Ukrainian Borscht', nameEn: 'Ukrainian Borscht', description: 'Traditional borscht with garlic bread', price: 3.95, category: 'soups', available: true },
+  { id: '4', name: 'Mushroom Cream Soup', nameEn: 'Mushroom Cream Soup', description: 'Delicate cream soup with porcini mushrooms', price: 3.75, category: 'soups', available: true },
+  { id: '5', name: 'Ribeye Steak', nameEn: 'Ribeye Steak', description: 'Marble beef steak, 300g', price: 16.50, category: 'main', available: true },
+  { id: '6', name: 'Grilled Salmon', nameEn: 'Grilled Salmon', description: 'Salmon fillet with grilled vegetables', price: 10.75, category: 'main', available: true },
+  { id: '7', name: 'Chicken Kyiv', nameEn: 'Chicken Kyiv', description: 'Classic Chicken Kyiv cutlet with butter', price: 7.15, category: 'main', available: true },
+  { id: '8', name: 'Margherita', nameEn: 'Margherita', description: 'Tomato sauce, mozzarella, basil', price: 5.45, category: 'pizza', available: true },
+  { id: '9', name: 'Pepperoni', nameEn: 'Pepperoni', description: 'Tomato sauce, mozzarella, pepperoni', price: 6.40, category: 'pizza', available: true },
+  { id: '10', name: 'Homemade Lemonade', nameEn: 'Homemade Lemonade', description: 'Lemon, mint, sugar, sparkling water', price: 2.30, category: 'drinks', available: true },
+  { id: '11', name: 'Cappuccino', nameEn: 'Cappuccino', description: 'Espresso with milk foam', price: 2.05, category: 'drinks', available: true },
+  { id: '12', name: 'NY Cheesecake', nameEn: 'NY Cheesecake', description: 'Classic cheesecake with berry sauce', price: 4.25, category: 'desserts', available: true },
+  { id: '13', name: 'Tiramisu', nameEn: 'Tiramisu', description: 'Italian dessert with mascarpone and coffee', price: 4.50, category: 'desserts', available: true },
 ];
 
 export const tables: TableInfo[] = [
-  { id: 't1', number: 1, seats: 2, status: 'free', zone: 'Зал', x: 60, y: 60, shape: 'rect' },
-  { id: 't2', number: 2, seats: 2, status: 'occupied', zone: 'Зал', orderId: 'o1', waiter: 'Андрій Ш.', x: 240, y: 60, shape: 'rect' },
-  { id: 't3', number: 3, seats: 4, status: 'free', zone: 'Зал', x: 420, y: 60, shape: 'rect' },
-  { id: 't4', number: 4, seats: 4, status: 'reserved', zone: 'Зал', reservationTime: '19:30', reservationGuest: 'Іванов О.', x: 60, y: 220, shape: 'rect' },
-  { id: 't5', number: 5, seats: 6, status: 'occupied', zone: 'Зал', orderId: 'o2', waiter: 'Марія Б.', x: 240, y: 220, shape: 'circle' },
-  { id: 't6', number: 6, seats: 2, status: 'free', zone: 'Тераса', x: 600, y: 60, shape: 'rect' },
-  { id: 't7', number: 7, seats: 4, status: 'payment', zone: 'Тераса', waiter: 'Андрій Ш.', orderId: 'o3', x: 600, y: 220, shape: 'rect' },
-  { id: 't8', number: 8, seats: 6, status: 'occupied', zone: 'Тераса', orderId: 'o3', waiter: 'Марія Б.', x: 420, y: 220, shape: 'circle' },
+  { id: 't1', number: 1, seats: 2, status: 'free', zone: 'Hall', x: 60, y: 60, shape: 'rect' },
+  { id: 't2', number: 2, seats: 2, status: 'occupied', zone: 'Hall', orderId: 'o1', waiter: 'Andriy S.', x: 240, y: 60, shape: 'rect' },
+  { id: 't3', number: 3, seats: 4, status: 'free', zone: 'Hall', x: 420, y: 60, shape: 'rect' },
+  { id: 't4', number: 4, seats: 4, status: 'reserved', zone: 'Hall', reservationTime: '19:30', reservationGuest: 'Ivanov O.', x: 60, y: 220, shape: 'rect' },
+  { id: 't5', number: 5, seats: 6, status: 'occupied', zone: 'Hall', orderId: 'o2', waiter: 'Maria B.', x: 240, y: 220, shape: 'circle' },
+  { id: 't6', number: 6, seats: 2, status: 'free', zone: 'Terrace', x: 600, y: 60, shape: 'rect' },
+  { id: 't7', number: 7, seats: 4, status: 'payment', zone: 'Terrace', waiter: 'Andriy S.', orderId: 'o3', x: 600, y: 220, shape: 'rect' },
+  { id: 't8', number: 8, seats: 6, status: 'occupied', zone: 'Terrace', orderId: 'o3', waiter: 'Maria B.', x: 420, y: 220, shape: 'circle' },
   { id: 't9', number: 9, seats: 8, status: 'free', zone: 'VIP', x: 60, y: 400, shape: 'circle' },
-  { id: 't10', number: 10, seats: 4, status: 'reserved', zone: 'VIP', reservationTime: '20:00', reservationGuest: 'Петренко В.', x: 300, y: 400, shape: 'rect' },
+  { id: 't10', number: 10, seats: 4, status: 'reserved', zone: 'VIP', reservationTime: '20:00', reservationGuest: 'Petrenko V.', x: 300, y: 400, shape: 'rect' },
 ];
 
 export const orders: Order[] = [
   {
-    id: 'o1', tableNumber: 2, status: 'in_progress', createdAt: new Date(Date.now() - 25 * 60000).toISOString(), total: 530,
+    id: 'o1', tableNumber: 2, status: 'in_progress', createdAt: new Date(Date.now() - 25 * 60000).toISOString(), total: 12.85,
     items: [
       { menuItem: menuItems[0], quantity: 1 },
       { menuItem: menuItems[4], quantity: 1 },
     ],
   },
   {
-    id: 'o2', tableNumber: 5, status: 'new', createdAt: new Date(Date.now() - 5 * 60000).toISOString(), total: 775,
+    id: 'o2', tableNumber: 5, status: 'new', createdAt: new Date(Date.now() - 5 * 60000).toISOString(), total: 18.65,
     items: [
       { menuItem: menuItems[2], quantity: 2 },
       { menuItem: menuItems[5], quantity: 1 },
     ],
   },
   {
-    id: 'o3', tableNumber: 8, status: 'ready', createdAt: new Date(Date.now() - 40 * 60000).toISOString(), total: 650,
+    id: 'o3', tableNumber: 8, status: 'ready', createdAt: new Date(Date.now() - 40 * 60000).toISOString(), total: 17.05,
     items: [
       { menuItem: menuItems[7], quantity: 2 },
       { menuItem: menuItems[10], quantity: 3 },
     ],
   },
   {
-    id: 'o4', tableNumber: 3, status: 'new', createdAt: new Date(Date.now() - 2 * 60000).toISOString(), total: 425,
+    id: 'o4', tableNumber: 3, status: 'new', createdAt: new Date(Date.now() - 2 * 60000).toISOString(), total: 10.90,
     items: [
       { menuItem: menuItems[8], quantity: 1 },
       { menuItem: menuItems[12], quantity: 1 },
@@ -111,19 +111,19 @@ export const orders: Order[] = [
 ];
 
 export const roleLabels: Record<UserRole, { ua: string; en: string }> = {
-  super_admin: { ua: 'Супер Адмін', en: 'Super Admin' },
-  owner: { ua: 'Власник', en: 'Owner' },
-  manager: { ua: 'Менеджер', en: 'Manager' },
-  waiter: { ua: 'Офіціант', en: 'Waiter' },
-  kitchen: { ua: 'Кухня', en: 'Kitchen' },
-  cashier: { ua: 'Касир', en: 'Cashier' },
-  customer: { ua: 'Гість', en: 'Customer' },
+  super_admin: { ua: 'Super Admin', en: 'Super Admin' },
+  owner: { ua: 'Owner', en: 'Owner' },
+  manager: { ua: 'Manager', en: 'Manager' },
+  waiter: { ua: 'Waiter', en: 'Waiter' },
+  kitchen: { ua: 'Kitchen', en: 'Kitchen' },
+  cashier: { ua: 'Cashier', en: 'Cashier' },
+  customer: { ua: 'Guest', en: 'Customer' },
 };
 
 export const staffMembers = [
-  { id: 's1', name: 'Олена Коваленко', role: 'manager' as UserRole, email: 'olena@boss.ua', active: true },
-  { id: 's2', name: 'Андрій Шевченко', role: 'waiter' as UserRole, email: 'andriy@boss.ua', active: true },
-  { id: 's3', name: 'Марія Бондаренко', role: 'waiter' as UserRole, email: 'maria@boss.ua', active: true },
-  { id: 's4', name: 'Іван Петренко', role: 'kitchen' as UserRole, email: 'ivan@boss.ua', active: true },
-  { id: 's5', name: 'Наталія Ткаченко', role: 'cashier' as UserRole, email: 'natalia@boss.ua', active: false },
+  { id: 's1', name: 'Olena Kovalenko', role: 'manager' as UserRole, email: 'olena@boss.eu', active: true },
+  { id: 's2', name: 'Andriy Shevchenko', role: 'waiter' as UserRole, email: 'andriy@boss.eu', active: true },
+  { id: 's3', name: 'Maria Bondarenko', role: 'waiter' as UserRole, email: 'maria@boss.eu', active: true },
+  { id: 's4', name: 'Ivan Petrenko', role: 'kitchen' as UserRole, email: 'ivan@boss.eu', active: true },
+  { id: 's5', name: 'Natalia Tkachenko', role: 'cashier' as UserRole, email: 'natalia@boss.eu', active: false },
 ];

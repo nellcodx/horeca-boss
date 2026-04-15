@@ -17,11 +17,11 @@ const AuthCard = () => {
 
   const validate = () => {
     const errs: Record<string, string> = {};
-    if (!email.trim()) errs.email = "Email обов'язковий";
-    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) errs.email = "Некоректний email";
-    if (!password) errs.password = "Пароль обов'язковий";
-    else if (password.length < 6) errs.password = "Мінімум 6 символів";
-    if (isSignUp && password !== confirmPassword) errs.confirm = "Паролі не співпадають";
+    if (!email.trim()) errs.email = "Email is required";
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) errs.email = "Invalid email";
+    if (!password) errs.password = "Password is required";
+    else if (password.length < 6) errs.password = "Minimum 6 characters";
+    if (isSignUp && password !== confirmPassword) errs.confirm = "Passwords don't match";
     setErrors(errs);
     return Object.keys(errs).length === 0;
   };
@@ -31,21 +31,20 @@ const AuthCard = () => {
     if (!validate()) return;
     setLoading(true);
     try {
-      // TODO: підключити Lovable Cloud для реальної авторизації
       await new Promise(r => setTimeout(r, 800));
       if (isSignUp) {
         toast({
-          title: "Реєстрація успішна!",
-          description: "Перевірте вашу пошту для підтвердження.",
+          title: "Registration successful!",
+          description: "Check your email for confirmation.",
         });
       } else {
-        toast({ title: "Ви увійшли!", description: "Ласкаво просимо." });
+        toast({ title: "Signed in!", description: "Welcome back." });
         navigate("/home", { replace: true });
       }
     } catch (error: any) {
       toast({
-        title: "Помилка",
-        description: error.message || "Щось пішло не так",
+        title: "Error",
+        description: error.message || "Something went wrong",
         variant: "destructive",
       });
     } finally {
@@ -62,7 +61,6 @@ const AuthCard = () => {
           />
         </div>
         <div className="relative z-[2] m-[5px] rounded-xl bg-card/95 backdrop-blur-[24px] border-2 border-card p-8 sm:p-10">
-          {/* Toggle */}
           <div className="flex items-center justify-center gap-4 mb-8">
             <span
               className={`text-sm font-semibold cursor-pointer transition-colors ${
@@ -70,7 +68,7 @@ const AuthCard = () => {
               }`}
               onClick={() => setIsSignUp(false)}
             >
-              Увійти
+              Sign In
             </span>
             
             <div
@@ -91,12 +89,12 @@ const AuthCard = () => {
               }`}
               onClick={() => setIsSignUp(true)}
             >
-              Реєстрація
+              Sign Up
             </span>
           </div>
 
           <h2 className="font-heading text-2xl sm:text-3xl font-bold text-center text-foreground mb-6">
-            {isSignUp ? "Створити акаунт" : "Ласкаво просимо"}
+            {isSignUp ? "Create Account" : "Welcome Back"}
           </h2>
 
           <form onSubmit={handleSubmit} className="flex flex-col gap-4">
@@ -117,7 +115,7 @@ const AuthCard = () => {
               <div className="relative">
                 <input
                   type={showPassword ? "text" : "password"}
-                  placeholder="Пароль"
+                  placeholder="Password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   className={`w-full h-12 rounded-lg border-2 bg-background px-4 pr-12 text-sm text-foreground placeholder:text-muted-foreground outline-none transition-all duration-200 focus:border-primary focus:shadow-[0_0_0_3px_hsl(var(--primary)/0.15)] ${
@@ -140,7 +138,7 @@ const AuthCard = () => {
                 <div className="relative">
                   <input
                     type={showConfirm ? "text" : "password"}
-                    placeholder="Підтвердіть пароль"
+                    placeholder="Confirm Password"
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}
                     className={`w-full h-12 rounded-lg border-2 bg-background px-4 pr-12 text-sm text-foreground placeholder:text-muted-foreground outline-none transition-all duration-200 focus:border-primary focus:shadow-[0_0_0_3px_hsl(var(--primary)/0.15)] ${
@@ -167,7 +165,7 @@ const AuthCard = () => {
               <span className="absolute top-0 left-0 w-full h-full rounded-xl bg-foreground/25 translate-y-[2px] transition-transform duration-[600ms] ease-[cubic-bezier(.3,.7,.4,1)] group-hover:translate-y-[4px] group-active:translate-y-[1px]" />
               <span className="absolute top-0 left-0 w-full h-full rounded-xl bg-gradient-to-l from-[hsl(348,83%,30%)] via-[hsl(348,83%,40%)] to-[hsl(348,83%,30%)]" />
               <span className="block relative rounded-xl px-7 py-3 bg-primary text-primary-foreground font-semibold text-base -translate-y-1 transition-transform duration-[600ms] ease-[cubic-bezier(.3,.7,.4,1)] group-hover:-translate-y-1.5 group-active:-translate-y-0.5">
-                {loading ? "Зачекайте..." : isSignUp ? "Зареєструватися" : "Увійти"}
+                {loading ? "Please wait..." : isSignUp ? "Sign Up" : "Sign In"}
               </span>
             </button>
           </form>

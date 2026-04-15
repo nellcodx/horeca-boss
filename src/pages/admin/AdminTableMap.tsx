@@ -14,12 +14,11 @@ import {
   Tooltip, TooltipContent, TooltipTrigger,
 } from '@/components/ui/tooltip';
 
-/* ── Status config ── */
 const statusCfg = {
-  free:     { label: 'Вільний',       bg: 'bg-success/10', border: 'border-success/30', text: 'text-success',      dot: 'bg-success',      icon: Utensils },
-  occupied: { label: 'Зайнятий',      bg: 'bg-destructive/10', border: 'border-destructive/30', text: 'text-destructive', dot: 'bg-destructive', icon: Users },
-  reserved: { label: 'Заброньований', bg: 'bg-warning/10', border: 'border-warning/30', text: 'text-warning',     dot: 'bg-warning',      icon: CalendarClock },
-  payment:  { label: 'Оплата',        bg: 'bg-info/10',    border: 'border-info/30',    text: 'text-info',        dot: 'bg-info',         icon: CreditCard },
+  free:     { label: 'Free',       bg: 'bg-success/10', border: 'border-success/30', text: 'text-success',      dot: 'bg-success',      icon: Utensils },
+  occupied: { label: 'Occupied',   bg: 'bg-destructive/10', border: 'border-destructive/30', text: 'text-destructive', dot: 'bg-destructive', icon: Users },
+  reserved: { label: 'Reserved',   bg: 'bg-warning/10', border: 'border-warning/30', text: 'text-warning',     dot: 'bg-warning',      icon: CalendarClock },
+  payment:  { label: 'Payment',    bg: 'bg-info/10',    border: 'border-info/30',    text: 'text-info',        dot: 'bg-info',         icon: CreditCard },
 } as const;
 
 const GRID = 20;
@@ -36,7 +35,6 @@ const AdminTableMap = () => {
   const zones = useMemo(() => ['all', ...Array.from(new Set(tables.map(t => t.zone)))], [tables]);
   const filtered = zone === 'all' ? tables : tables.filter(t => t.zone === zone);
 
-  /* ── Drag handlers ── */
   const handlePointerDown = useCallback((e: React.PointerEvent, table: TableInfo) => {
     e.preventDefault();
     const rect = (e.currentTarget as HTMLElement).getBoundingClientRect();
@@ -55,7 +53,6 @@ const AdminTableMap = () => {
 
   const handlePointerUp = useCallback(() => setDragId(null), []);
 
-  /* ── Status change ── */
   const cycleStatus = (table: TableInfo) => {
     const order: TableInfo['status'][] = ['free', 'occupied', 'payment', 'free'];
     if (table.status === 'reserved') return;
@@ -64,10 +61,8 @@ const AdminTableMap = () => {
     setTables(prev => prev.map(t => t.id === table.id ? { ...t, status: next } : t));
   };
 
-  /* ── Order lookup ── */
   const getOrder = (orderId?: string) => orderId ? orders.find(o => o.id === orderId) : undefined;
 
-  /* ── Summary counts ── */
   const counts = useMemo(() => {
     const c = { free: 0, occupied: 0, reserved: 0, payment: 0 };
     filtered.forEach(t => c[t.status]++);
@@ -77,14 +72,12 @@ const AdminTableMap = () => {
   return (
     <AdminLayout>
       <div className="space-y-6">
-        {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>
-            <h1 className="font-heading text-[32px] font-bold text-foreground leading-tight">Карта залу</h1>
-            <p className="text-sm text-muted-foreground mt-1">Перетягуйте столи · натисніть для деталей</p>
+            <h1 className="font-heading text-[32px] font-bold text-foreground leading-tight">Floor Map</h1>
+            <p className="text-sm text-muted-foreground mt-1">Drag tables · click for details</p>
           </div>
 
-          {/* Legend */}
           <div className="flex gap-2 flex-wrap">
             {(Object.keys(statusCfg) as Array<keyof typeof statusCfg>).map(s => (
               <div
@@ -101,7 +94,6 @@ const AdminTableMap = () => {
           </div>
         </div>
 
-        {/* Zone filter — segmented control */}
         <div className="flex gap-1 bg-card p-1.5 rounded-xl w-fit shadow-card border border-border">
           {zones.map(z => (
             <button
@@ -114,12 +106,11 @@ const AdminTableMap = () => {
                   : 'text-muted-foreground hover:text-foreground hover:bg-muted/60'
               )}
             >
-              {z === 'all' ? 'Всі' : z}
+              {z === 'all' ? 'All' : z}
             </button>
           ))}
         </div>
 
-        {/* Floor plan */}
         <div
           ref={floorRef}
           onPointerMove={handlePointerMove}
@@ -170,16 +161,15 @@ const AdminTableMap = () => {
                   </div>
                 </TooltipTrigger>
                 <TooltipContent side="top" className="text-xs shadow-card-hover">
-                  <p className="font-semibold">Стіл #{table.number} — {cfg.label}</p>
-                  {table.waiter && <p>Офіціант: {table.waiter}</p>}
-                  {table.reservationGuest && <p>Бронь: {table.reservationGuest} о {table.reservationTime}</p>}
+                  <p className="font-semibold">Table #{table.number} — {cfg.label}</p>
+                  {table.waiter && <p>Waiter: {table.waiter}</p>}
+                  {table.reservationGuest && <p>Reservation: {table.reservationGuest} at {table.reservationTime}</p>}
                 </TooltipContent>
               </Tooltip>
             );
           })}
         </div>
 
-        {/* Detail modal */}
         <Dialog open={!!selectedTable} onOpenChange={(o) => !o && setSelectedTable(null)}>
           {selectedTable && (() => {
             const cfg = statusCfg[selectedTable.status];
@@ -195,72 +185,68 @@ const AdminTableMap = () => {
                       {selectedTable.number}
                     </div>
                     <div>
-                      <DialogTitle className="text-xl font-heading">Стіл #{selectedTable.number}</DialogTitle>
+                      <DialogTitle className="text-xl font-heading">Table #{selectedTable.number}</DialogTitle>
                       <DialogDescription className="flex items-center gap-2 mt-1">
                         <Badge className={cn('text-xs font-semibold', cfg.text, cfg.bg, cfg.border, 'border')}>
                           {cfg.label}
                         </Badge>
-                        <span className="text-muted-foreground">{selectedTable.seats} місць · {selectedTable.zone}</span>
+                        <span className="text-muted-foreground">{selectedTable.seats} seats · {selectedTable.zone}</span>
                       </DialogDescription>
                     </div>
                   </div>
                 </DialogHeader>
 
                 <div className="space-y-4 mt-4">
-                  {/* Waiter */}
                   {selectedTable.waiter && (
                     <div className="flex items-center gap-3 text-sm bg-accent rounded-xl px-4 py-3">
                       <Users className="w-4 h-4 text-muted-foreground" />
-                      <span className="text-muted-foreground">Офіціант:</span>
+                      <span className="text-muted-foreground">Waiter:</span>
                       <span className="font-semibold text-foreground">{selectedTable.waiter}</span>
                     </div>
                   )}
 
-                  {/* Reservation */}
                   {selectedTable.reservationGuest && (
                     <div className="bg-warning/10 border border-warning/25 rounded-xl p-4 space-y-1">
                       <div className="flex items-center gap-2 text-sm font-semibold text-warning">
-                        <CalendarClock className="w-4 h-4" /> Бронювання
+                        <CalendarClock className="w-4 h-4" /> Reservation
                       </div>
                       <p className="text-sm text-foreground">{selectedTable.reservationGuest} · {selectedTable.reservationTime}</p>
                     </div>
                   )}
 
-                  {/* Order items */}
                   {order && (
                     <div className="space-y-3">
-                      <h4 className="text-sm font-semibold text-foreground">Замовлення</h4>
+                      <h4 className="text-sm font-semibold text-foreground">Order</h4>
                       <div className="bg-accent rounded-xl divide-y divide-border overflow-hidden">
                         {order.items.map((item, i) => (
                           <div key={i} className="flex items-center justify-between px-4 py-3 text-sm">
                             <span className="text-foreground">{item.menuItem.name} <span className="text-muted-foreground">×{item.quantity}</span></span>
-                            <span className="font-semibold text-foreground">{item.menuItem.price * item.quantity} ₴</span>
+                            <span className="font-semibold text-foreground">€{(item.menuItem.price * item.quantity).toFixed(2)}</span>
                           </div>
                         ))}
                       </div>
                       <div className="flex justify-between items-center pt-1 px-1">
-                        <span className="text-sm font-medium text-muted-foreground">Разом</span>
-                        <span className="text-2xl font-heading font-bold text-foreground">{order.total} ₴</span>
+                        <span className="text-sm font-medium text-muted-foreground">Total</span>
+                        <span className="text-2xl font-heading font-bold text-foreground">€{order.total.toFixed(2)}</span>
                       </div>
                     </div>
                   )}
 
-                  {/* Quick actions */}
                   <div className="flex gap-3 pt-2">
                     {selectedTable.status !== 'reserved' && (
                       <button
                         onClick={() => { cycleStatus(selectedTable); setSelectedTable(null); }}
                         className="flex-1 bg-primary text-primary-foreground rounded-xl py-3 text-sm font-semibold hover:bg-primary-hover transition-colors duration-200 shadow-card hover:shadow-card-hover"
                       >
-                        {selectedTable.status === 'free' ? 'Посадити гостей' :
-                         selectedTable.status === 'occupied' ? 'Перейти до оплати' : 'Звільнити стіл'}
+                        {selectedTable.status === 'free' ? 'Seat Guests' :
+                         selectedTable.status === 'occupied' ? 'Proceed to Payment' : 'Free Table'}
                       </button>
                     )}
                     <button
                       onClick={() => setSelectedTable(null)}
                       className="px-5 py-3 border border-border rounded-xl text-sm font-medium text-muted-foreground hover:bg-accent hover:text-foreground transition-colors duration-200"
                     >
-                      Закрити
+                      Close
                     </button>
                   </div>
                 </div>
