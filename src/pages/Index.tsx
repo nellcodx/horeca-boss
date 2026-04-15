@@ -2,8 +2,8 @@ import { useNavigate } from 'react-router-dom';
 import { Users, Utensils } from 'lucide-react';
 
 const cards = [
-  { icon: <Utensils className="w-7 h-7" />, label: 'Зона клієнта', desc: 'Меню, замовлення, бронювання', path: '/customer' },
-  { icon: <Users className="w-7 h-7" />, label: 'Зона персоналу', desc: 'Управління залом, кухня, аналітика', path: '/staff' },
+  { icon: <Utensils className="w-7 h-7" />, label: 'Customer Zone', desc: 'Menu, orders, reservations', path: '/customer' },
+  { icon: <Users className="w-7 h-7" />, label: 'Staff Zone', desc: 'Floor management, kitchen, analytics', path: '/staff' },
 ];
 
 const Index = () => {
@@ -22,16 +22,15 @@ const Index = () => {
         <h1 className="text-5xl font-heading font-bold tracking-tight mb-2">
           HoReCa <span className="text-primary">BOSS</span>
         </h1>
-        <p className="text-muted-foreground text-lg">Оберіть зону для роботи</p>
+        <p className="text-muted-foreground text-lg">Choose your zone</p>
       </div>
 
       <div className="w-full max-w-md grid grid-cols-2 gap-3">
-        {cards.map(({ icon, label, desc, path }, i) => (
+        {cards.map(({ icon, label, desc, path }) => (
           <button
             key={path}
             onClick={() => navigate(path)}
             className="group flex flex-col items-center gap-3 p-5 rounded-xl border border-white/40 backdrop-blur-xl shadow-[0_4px_24px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:shadow-[0_8px_32px_rgba(229,57,53,0.12)] hover:border-primary/40 transition-all duration-300 cursor-pointer bg-primary-foreground animate-fade-in"
-            
           >
             <div className="w-12 h-12 rounded-xl bg-white/60 backdrop-blur-sm flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors duration-300">
               {icon}

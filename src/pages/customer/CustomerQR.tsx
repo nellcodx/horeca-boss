@@ -26,20 +26,20 @@ const CustomerQR = () => {
           <QrCode className="w-10 h-10 text-primary" />
         </div>
         <div>
-          <h1 className="font-heading font-bold text-3xl mb-2">Ласкаво просимо!</h1>
+          <h1 className="font-heading font-bold text-3xl mb-2">Welcome!</h1>
           <p className="text-muted-foreground">
-            Стіл <span className="font-bold text-foreground">#{tableId || '—'}</span>
+            Table <span className="font-bold text-foreground">#{tableId || '—'}</span>
           </p>
         </div>
         <p className="text-sm text-muted-foreground max-w-xs mx-auto">
-          Переглядайте меню, додавайте страви до кошика та оформлюйте замовлення прямо зі свого телефону
+          Browse the menu, add dishes to your cart, and place your order right from your phone
         </p>
         <button
           onClick={() => navigate('/customer')}
           className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-primary text-primary-foreground font-bold text-lg hover:opacity-90 transition-opacity"
         >
           <Utensils className="w-5 h-5" />
-          Відкрити меню
+          Open Menu
         </button>
       </motion.div>
     </div>

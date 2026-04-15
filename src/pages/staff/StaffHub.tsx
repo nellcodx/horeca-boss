@@ -4,12 +4,12 @@ import { UserRole, roleLabels } from '@/data/mock';
 import { ChefHat, Users, UtensilsCrossed, ShieldCheck, Store, Receipt, ArrowLeft } from 'lucide-react';
 
 const staffCards: { role: UserRole; icon: React.ReactNode; path: string; desc: string }[] = [
-  { role: 'waiter', icon: <UtensilsCrossed className="w-7 h-7" />, path: '/staff/floor', desc: 'Зал, замовлення, рахунки' },
-  { role: 'kitchen', icon: <ChefHat className="w-7 h-7" />, path: '/staff/kitchen', desc: 'Черга замовлень, статуси' },
-  { role: 'cashier', icon: <Receipt className="w-7 h-7" />, path: '/staff/floor', desc: 'Оплата, чеки, каса' },
-  { role: 'manager', icon: <Users className="w-7 h-7" />, path: '/staff/dashboard', desc: 'Аналітика, персонал, меню' },
-  { role: 'owner', icon: <Store className="w-7 h-7" />, path: '/staff/dashboard', desc: 'Повний доступ до системи' },
-  { role: 'super_admin', icon: <ShieldCheck className="w-7 h-7" />, path: '/staff/dashboard', desc: 'Адміністрування всіх локацій' },
+  { role: 'waiter', icon: <UtensilsCrossed className="w-7 h-7" />, path: '/staff/floor', desc: 'Floor, orders, bills' },
+  { role: 'kitchen', icon: <ChefHat className="w-7 h-7" />, path: '/staff/kitchen', desc: 'Order queue, statuses' },
+  { role: 'cashier', icon: <Receipt className="w-7 h-7" />, path: '/staff/floor', desc: 'Payments, receipts, register' },
+  { role: 'manager', icon: <Users className="w-7 h-7" />, path: '/staff/dashboard', desc: 'Analytics, staff, menu' },
+  { role: 'owner', icon: <Store className="w-7 h-7" />, path: '/staff/dashboard', desc: 'Full system access' },
+  { role: 'super_admin', icon: <ShieldCheck className="w-7 h-7" />, path: '/staff/dashboard', desc: 'Admin for all locations' },
 ];
 
 const StaffHub = () => {
@@ -32,29 +32,28 @@ const StaffHub = () => {
       <div className="w-full max-w-2xl animate-fade-in">
         <button onClick={() => navigate('/')} className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors mb-8">
           <ArrowLeft className="w-4 h-4" />
-          <span className="text-sm">На головну</span>
+          <span className="text-sm">Home</span>
         </button>
 
         <div className="mb-8">
           <h1 className="text-3xl font-heading font-bold tracking-tight mb-2 text-center">
-            Зона <span className="text-primary">персоналу</span>
+            Staff <span className="text-primary">Zone</span>
           </h1>
-          <p className="text-muted-foreground text-sm font-sans bg-muted border-0 border-muted border-none rounded-none shadow-none opacity-100 text-center">Оберіть вашу роль для входу</p>
+          <p className="text-muted-foreground text-sm font-sans bg-muted border-0 border-muted border-none rounded-none shadow-none opacity-100 text-center">Choose your role to sign in</p>
         </div>
 
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-          {staffCards.map(({ role, icon, path, desc }, i) => (
+          {staffCards.map(({ role, icon, path, desc }) => (
             <button
               key={role}
               onClick={() => handleSelect(role, path)}
               className="group flex flex-col items-center gap-3 p-5 rounded-xl border border-white/40 backdrop-blur-xl shadow-[0_4px_24px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:shadow-[0_8px_32px_rgba(229,57,53,0.12)] hover:border-primary/40 transition-all duration-300 cursor-pointer bg-primary-foreground animate-fade-in"
-              
             >
               <div className="w-12 h-12 rounded-xl bg-white/60 backdrop-blur-sm flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors duration-300">
                 {icon}
               </div>
               <div className="text-center">
-                <div className="font-semibold text-sm text-foreground">{roleLabels[role].ua}</div>
+                <div className="font-semibold text-sm text-foreground">{roleLabels[role].en}</div>
                 <div className="text-[11px] text-muted-foreground mt-0.5">{desc}</div>
               </div>
             </button>
@@ -62,7 +61,7 @@ const StaffHub = () => {
         </div>
 
         <p className="text-center mt-8 text-xs text-muted-foreground">
-          У майбутньому — вхід через email + пароль або PIN
+          Coming soon — sign in via email + password or PIN
         </p>
       </div>
     </div>

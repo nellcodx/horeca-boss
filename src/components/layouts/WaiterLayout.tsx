@@ -5,8 +5,8 @@ import { useRole } from '@/contexts/RoleContext';
 import { cn } from '@/lib/utils';
 
 const tabs = [
-  { to: '/staff/floor', icon: LayoutGrid, label: 'Зал' },
-  { to: '/staff/orders', icon: ClipboardList, label: 'Замовлення' },
+  { to: '/staff/floor', icon: LayoutGrid, label: 'Floor' },
+  { to: '/staff/orders', icon: ClipboardList, label: 'Orders' },
 ];
 
 export const WaiterLayout = ({ children }: { children: ReactNode }) => {
@@ -20,7 +20,7 @@ export const WaiterLayout = ({ children }: { children: ReactNode }) => {
           <button onClick={() => navigate('/staff')} className="text-muted-foreground hover:text-foreground transition-colors">
             <ArrowLeft className="w-5 h-5" />
           </button>
-          <h1 className="font-heading font-bold text-lg">Офіціант</h1>
+          <h1 className="font-heading font-bold text-lg">Waiter</h1>
         </div>
         <button onClick={toggleDarkMode} className="p-2 rounded-lg hover:bg-accent transition-colors text-muted-foreground">
           {isDarkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}

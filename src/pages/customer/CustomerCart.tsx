@@ -11,9 +11,9 @@ type PaymentMethod = 'card' | 'cash' | 'apple_pay';
 type CheckoutStep = 'cart' | 'payment' | 'success';
 
 const paymentMethods: { id: PaymentMethod; label: string; icon: React.ReactNode; desc: string }[] = [
-  { id: 'card', label: 'Картка', icon: <CreditCard className="w-5 h-5" />, desc: 'Visa, Mastercard' },
-  { id: 'cash', label: 'Готівка', icon: <Banknote className="w-5 h-5" />, desc: 'Оплата офіціанту' },
-  { id: 'apple_pay', label: 'Apple Pay', icon: <Smartphone className="w-5 h-5" />, desc: 'Безконтактна оплата' },
+  { id: 'card', label: 'Card', icon: <CreditCard className="w-5 h-5" />, desc: 'Visa, Mastercard' },
+  { id: 'cash', label: 'Cash', icon: <Banknote className="w-5 h-5" />, desc: 'Pay the waiter' },
+  { id: 'apple_pay', label: 'Apple Pay', icon: <Smartphone className="w-5 h-5" />, desc: 'Contactless payment' },
 ];
 
 const CustomerCart = () => {
@@ -26,7 +26,7 @@ const CustomerCart = () => {
 
   const handleProceedToPayment = () => {
     if (!selectedTable) {
-      toast.error('Оберіть номер столика');
+      toast.error('Please select a table number');
       return;
     }
     if (items.length === 0) return;
@@ -52,17 +52,17 @@ const CustomerCart = () => {
           <div className="w-20 h-20 rounded-full bg-success/10 flex items-center justify-center mb-5">
             <CheckCircle2 className="w-10 h-10 text-success" />
           </div>
-          <h2 className="font-heading font-bold text-2xl mb-2">Замовлення оформлено!</h2>
-          <p className="text-muted-foreground mb-1">Замовлення #{orderNumber}</p>
-          <p className="text-muted-foreground text-sm mb-6">Стіл #{selectedTable} • {total} ₴</p>
+          <h2 className="font-heading font-bold text-2xl mb-2">Order Placed!</h2>
+          <p className="text-muted-foreground mb-1">Order #{orderNumber}</p>
+          <p className="text-muted-foreground text-sm mb-6">Table #{selectedTable} • €{total.toFixed(2)}</p>
           <p className="text-sm text-muted-foreground mb-6">
-            {selectedPayment === 'cash' ? 'Оплата готівкою офіціанту' : 'Оплата пройшла успішно'}
+            {selectedPayment === 'cash' ? 'Cash payment to waiter' : 'Payment successful'}
           </p>
           <button
             onClick={() => { setStep('cart'); navigate('/customer'); }}
             className="px-8 py-3 rounded-xl bg-primary text-primary-foreground font-semibold hover:opacity-90 transition-opacity"
           >
-            Повернутися до меню
+            Back to Menu
           </button>
         </motion.div>
       </CustomerLayout>
@@ -74,8 +74,8 @@ const CustomerCart = () => {
       <CustomerLayout>
         <div className="flex flex-col items-center justify-center h-[60vh] px-4 text-center">
           <ShoppingBag className="w-16 h-16 text-muted-foreground/30 mb-4" />
-          <h2 className="font-heading font-bold text-xl mb-2">Кошик порожній</h2>
-          <p className="text-muted-foreground text-sm">Додайте страви з меню</p>
+          <h2 className="font-heading font-bold text-xl mb-2">Cart is Empty</h2>
+          <p className="text-muted-foreground text-sm">Add dishes from the menu</p>
         </div>
       </CustomerLayout>
     );
@@ -87,21 +87,19 @@ const CustomerCart = () => {
         <AnimatePresence mode="wait">
           {step === 'cart' && (
             <motion.div key="cart" initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} className="space-y-4">
-              <h2 className="font-heading font-bold text-xl">Ваше замовлення</h2>
+              <h2 className="font-heading font-bold text-xl">Your Order</h2>
 
-              {/* Table selection */}
               <div className="p-4 rounded-xl bg-card border border-border">
-                <label className="text-sm font-medium text-card-foreground block mb-2">Номер столика</label>
+                <label className="text-sm font-medium text-card-foreground block mb-2">Table Number</label>
                 <input
                   type="number" min="1" max="20"
                   value={selectedTable}
                   onChange={e => setSelectedTable(e.target.value)}
-                  placeholder="Введіть номер"
+                  placeholder="Enter number"
                   className="w-full px-4 py-3 rounded-lg border border-input bg-background text-foreground text-sm focus:ring-2 focus:ring-ring outline-none"
                 />
               </div>
 
-              {/* Items */}
               <div className="space-y-3">
                 {items.map((item, i) => (
                   <motion.div
@@ -113,7 +111,7 @@ const CustomerCart = () => {
                   >
                     <div className="flex-1 min-w-0">
                       <h3 className="font-medium text-sm text-card-foreground">{item.menuItem.name}</h3>
-                      <p className="text-primary font-bold text-sm">{item.menuItem.price * item.quantity} ₴</p>
+                      <p className="text-primary font-bold text-sm">€{(item.menuItem.price * item.quantity).toFixed(2)}</p>
                     </div>
                     <div className="flex items-center gap-2">
                       <button onClick={() => updateQuantity(item.menuItem.id, item.quantity - 1)} className="w-7 h-7 rounded-full bg-muted flex items-center justify-center">
@@ -131,17 +129,16 @@ const CustomerCart = () => {
                 ))}
               </div>
 
-              {/* Total & proceed */}
               <div className="p-4 rounded-xl bg-card border border-border space-y-3">
                 <div className="flex justify-between text-lg font-bold">
-                  <span>Разом</span>
-                  <span className="text-primary">{total} ₴</span>
+                  <span>Total</span>
+                  <span className="text-primary">€{total.toFixed(2)}</span>
                 </div>
                 <button
                   onClick={handleProceedToPayment}
                   className="w-full py-4 rounded-xl bg-primary text-primary-foreground font-bold text-lg flex items-center justify-center gap-2 hover:opacity-90 transition-opacity"
                 >
-                  До оплати
+                  Proceed to Payment
                   <ArrowRight className="w-5 h-5" />
                 </button>
               </div>
@@ -151,23 +148,21 @@ const CustomerCart = () => {
           {step === 'payment' && (
             <motion.div key="payment" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 20 }} className="space-y-4">
               <div className="flex items-center gap-3">
-                <button onClick={() => setStep('cart')} className="text-muted-foreground hover:text-foreground text-sm">← Назад</button>
-                <h2 className="font-heading font-bold text-xl">Оплата</h2>
+                <button onClick={() => setStep('cart')} className="text-muted-foreground hover:text-foreground text-sm">← Back</button>
+                <h2 className="font-heading font-bold text-xl">Payment</h2>
               </div>
 
-              {/* Order summary */}
               <div className="p-4 rounded-xl bg-card border border-border">
-                <div className="text-sm text-muted-foreground mb-1">Стіл #{selectedTable}</div>
+                <div className="text-sm text-muted-foreground mb-1">Table #{selectedTable}</div>
                 <div className="flex justify-between font-bold text-lg">
-                  <span>До сплати</span>
-                  <span className="text-primary">{total} ₴</span>
+                  <span>Amount Due</span>
+                  <span className="text-primary">€{total.toFixed(2)}</span>
                 </div>
-                <div className="text-xs text-muted-foreground mt-1">{items.length} позицій</div>
+                <div className="text-xs text-muted-foreground mt-1">{items.length} items</div>
               </div>
 
-              {/* Payment methods */}
               <div className="space-y-2">
-                <label className="text-sm font-medium text-foreground block">Спосіб оплати</label>
+                <label className="text-sm font-medium text-foreground block">Payment Method</label>
                 {paymentMethods.map(pm => (
                   <button
                     key={pm.id}
@@ -194,12 +189,11 @@ const CustomerCart = () => {
                 ))}
               </div>
 
-              {/* Pay button */}
               <button
                 onClick={handlePay}
                 className="w-full py-4 rounded-xl bg-primary text-primary-foreground font-bold text-lg hover:opacity-90 transition-opacity"
               >
-                {selectedPayment === 'cash' ? 'Підтвердити замовлення' : `Сплатити ${total} ₴`}
+                {selectedPayment === 'cash' ? 'Confirm Order' : `Pay €${total.toFixed(2)}`}
               </button>
             </motion.div>
           )}

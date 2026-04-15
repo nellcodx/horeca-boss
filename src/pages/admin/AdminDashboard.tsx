@@ -3,20 +3,20 @@ import { TrendingUp, ShoppingBag, DollarSign, Users, Clock } from 'lucide-react'
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LineChart, Line, PieChart, Pie, Cell } from 'recharts';
 
 const stats = [
-  { label: 'Замовлень сьогодні', value: '47', icon: ShoppingBag, change: '+12%' },
-  { label: 'Виручка', value: '28,450 ₴', icon: DollarSign, change: '+8%' },
-  { label: 'Гостей', value: '124', icon: Users, change: '+15%' },
-  { label: 'Сер. час обслуг.', value: '23 хв', icon: Clock, change: '-5%' },
+  { label: 'Orders today', value: '47', icon: ShoppingBag, change: '+12%' },
+  { label: 'Revenue', value: '€690', icon: DollarSign, change: '+8%' },
+  { label: 'Guests', value: '124', icon: Users, change: '+15%' },
+  { label: 'Avg. service time', value: '23 min', icon: Clock, change: '-5%' },
 ];
 
 const revenueData = [
-  { day: 'Пн', revenue: 18200 },
-  { day: 'Вт', revenue: 22100 },
-  { day: 'Ср', revenue: 19800 },
-  { day: 'Чт', revenue: 24500 },
-  { day: 'Пт', revenue: 31200 },
-  { day: 'Сб', revenue: 38400 },
-  { day: 'Нд', revenue: 28450 },
+  { day: 'Mon', revenue: 440 },
+  { day: 'Tue', revenue: 535 },
+  { day: 'Wed', revenue: 480 },
+  { day: 'Thu', revenue: 595 },
+  { day: 'Fri', revenue: 755 },
+  { day: 'Sat', revenue: 930 },
+  { day: 'Sun', revenue: 690 },
 ];
 
 const ordersData = [
@@ -36,19 +36,19 @@ const ordersData = [
 ];
 
 const categoryData = [
-  { name: 'Основні', value: 35, color: 'hsl(0, 78%, 52%)' },
-  { name: 'Піца', value: 25, color: 'hsl(0, 78%, 65%)' },
-  { name: 'Салати', value: 15, color: 'hsl(0, 78%, 78%)' },
-  { name: 'Напої', value: 15, color: 'hsl(0, 40%, 85%)' },
-  { name: 'Десерти', value: 10, color: 'hsl(0, 20%, 90%)' },
+  { name: 'Mains', value: 35, color: 'hsl(0, 78%, 52%)' },
+  { name: 'Pizza', value: 25, color: 'hsl(0, 78%, 65%)' },
+  { name: 'Salads', value: 15, color: 'hsl(0, 78%, 78%)' },
+  { name: 'Drinks', value: 15, color: 'hsl(0, 40%, 85%)' },
+  { name: 'Desserts', value: 10, color: 'hsl(0, 20%, 90%)' },
 ];
 
 const recentOrders = [
-  { id: '#1247', table: 5, total: '1,245 ₴', status: 'Готується', time: '5 хв тому' },
-  { id: '#1246', table: 2, total: '685 ₴', status: 'Подано', time: '12 хв тому' },
-  { id: '#1245', table: 8, total: '2,130 ₴', status: 'Оплачено', time: '25 хв тому' },
-  { id: '#1244', table: 3, total: '425 ₴', status: 'Нове', time: '2 хв тому' },
-  { id: '#1243', table: 1, total: '890 ₴', status: 'Готово', time: '18 хв тому' },
+  { id: '#1247', table: 5, total: '€30.15', status: 'Preparing', time: '5 min ago' },
+  { id: '#1246', table: 2, total: '€16.50', status: 'Served', time: '12 min ago' },
+  { id: '#1245', table: 8, total: '€51.60', status: 'Paid', time: '25 min ago' },
+  { id: '#1244', table: 3, total: '€10.30', status: 'New', time: '2 min ago' },
+  { id: '#1243', table: 1, total: '€21.55', status: 'Ready', time: '18 min ago' },
 ];
 
 const AdminDashboard = () => {
@@ -56,11 +56,10 @@ const AdminDashboard = () => {
     <AdminLayout>
       <div className="space-y-6">
         <div>
-          <h2 className="font-heading font-bold text-2xl">Дашборд</h2>
-          <p className="text-muted-foreground text-sm">Огляд діяльності закладу</p>
+          <h2 className="font-heading font-bold text-2xl">Dashboard</h2>
+          <p className="text-muted-foreground text-sm">Venue activity overview</p>
         </div>
 
-        {/* Stats */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {stats.map(({ label, value, icon: Icon, change }) => (
             <div key={label} className="p-5 rounded-xl bg-card border border-border">
@@ -78,18 +77,16 @@ const AdminDashboard = () => {
           ))}
         </div>
 
-        {/* Charts row */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-          {/* Revenue chart */}
           <div className="rounded-xl bg-card border border-border p-5">
-            <h3 className="font-heading font-semibold text-lg mb-4">Виручка за тиждень</h3>
+            <h3 className="font-heading font-semibold text-lg mb-4">Weekly Revenue</h3>
             <ResponsiveContainer width="100%" height={240}>
               <BarChart data={revenueData}>
                 <CartesianGrid strokeDasharray="3 3" stroke="hsl(0, 0%, 90%)" />
                 <XAxis dataKey="day" tick={{ fontSize: 12 }} stroke="hsl(0, 0%, 40%)" />
-                <YAxis tick={{ fontSize: 12 }} stroke="hsl(0, 0%, 40%)" tickFormatter={v => `${(v / 1000).toFixed(0)}к`} />
+                <YAxis tick={{ fontSize: 12 }} stroke="hsl(0, 0%, 40%)" tickFormatter={v => `€${v}`} />
                 <Tooltip
-                  formatter={(value: number) => [`${value.toLocaleString()} ₴`, 'Виручка']}
+                  formatter={(value: number) => [`€${value.toLocaleString()}`, 'Revenue']}
                   contentStyle={{ borderRadius: '8px', border: '1px solid hsl(0, 0%, 90%)', fontSize: '13px' }}
                 />
                 <Bar dataKey="revenue" fill="hsl(0, 78%, 52%)" radius={[6, 6, 0, 0]} />
@@ -97,16 +94,15 @@ const AdminDashboard = () => {
             </ResponsiveContainer>
           </div>
 
-          {/* Orders by hour */}
           <div className="rounded-xl bg-card border border-border p-5">
-            <h3 className="font-heading font-semibold text-lg mb-4">Замовлення по годинах</h3>
+            <h3 className="font-heading font-semibold text-lg mb-4">Orders by Hour</h3>
             <ResponsiveContainer width="100%" height={240}>
               <LineChart data={ordersData}>
                 <CartesianGrid strokeDasharray="3 3" stroke="hsl(0, 0%, 90%)" />
                 <XAxis dataKey="hour" tick={{ fontSize: 12 }} stroke="hsl(0, 0%, 40%)" />
                 <YAxis tick={{ fontSize: 12 }} stroke="hsl(0, 0%, 40%)" />
                 <Tooltip
-                  formatter={(value: number) => [value, 'Замовлень']}
+                  formatter={(value: number) => [value, 'Orders']}
                   contentStyle={{ borderRadius: '8px', border: '1px solid hsl(0, 0%, 90%)', fontSize: '13px' }}
                 />
                 <Line type="monotone" dataKey="orders" stroke="hsl(0, 78%, 52%)" strokeWidth={2.5} dot={{ fill: 'hsl(0, 78%, 52%)', r: 4 }} />
@@ -115,11 +111,9 @@ const AdminDashboard = () => {
           </div>
         </div>
 
-        {/* Category + Table */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-          {/* Pie chart */}
           <div className="rounded-xl bg-card border border-border p-5">
-            <h3 className="font-heading font-semibold text-lg mb-4">Популярні категорії</h3>
+            <h3 className="font-heading font-semibold text-lg mb-4">Popular Categories</h3>
             <ResponsiveContainer width="100%" height={200}>
               <PieChart>
                 <Pie data={categoryData} cx="50%" cy="50%" outerRadius={80} dataKey="value" label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`} labelLine={false}>
@@ -127,25 +121,24 @@ const AdminDashboard = () => {
                     <Cell key={i} fill={entry.color} />
                   ))}
                 </Pie>
-                <Tooltip formatter={(value: number) => [`${value}%`, 'Частка']} contentStyle={{ borderRadius: '8px', fontSize: '13px' }} />
+                <Tooltip formatter={(value: number) => [`${value}%`, 'Share']} contentStyle={{ borderRadius: '8px', fontSize: '13px' }} />
               </PieChart>
             </ResponsiveContainer>
           </div>
 
-          {/* Recent orders table */}
           <div className="rounded-xl bg-card border border-border overflow-hidden lg:col-span-2">
             <div className="p-5 border-b border-border">
-              <h3 className="font-heading font-semibold text-lg">Останні замовлення</h3>
+              <h3 className="font-heading font-semibold text-lg">Recent Orders</h3>
             </div>
             <div className="overflow-x-auto">
               <table className="w-full">
                 <thead>
                   <tr className="border-b border-border">
                     <th className="text-left p-4 text-sm font-medium text-muted-foreground">ID</th>
-                    <th className="text-left p-4 text-sm font-medium text-muted-foreground">Стіл</th>
-                    <th className="text-left p-4 text-sm font-medium text-muted-foreground">Сума</th>
-                    <th className="text-left p-4 text-sm font-medium text-muted-foreground">Статус</th>
-                    <th className="text-left p-4 text-sm font-medium text-muted-foreground">Час</th>
+                    <th className="text-left p-4 text-sm font-medium text-muted-foreground">Table</th>
+                    <th className="text-left p-4 text-sm font-medium text-muted-foreground">Total</th>
+                    <th className="text-left p-4 text-sm font-medium text-muted-foreground">Status</th>
+                    <th className="text-left p-4 text-sm font-medium text-muted-foreground">Time</th>
                   </tr>
                 </thead>
                 <tbody>
